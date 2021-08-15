@@ -1,4 +1,5 @@
 import React from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectTasksIds } from './tasksSlice';
@@ -17,7 +18,20 @@ export const TasksList = () => {
 	} else if (taskStatus === 'failed') {
 		content = <div>{error}</div>;
 	} else {
-		content = <div>taskStatus: Idle</div>;
+		content = (
+			<Container fluid>
+				<Row>
+					<Col>Task 1 - Title</Col>
+					<Col>Task 1 - Content</Col>
+					<Col>Task 1 - Check</Col>
+				</Row>
+				<Row>
+					<Col>Task 2 - Title</Col>
+					<Col>Task 2 - Content</Col>
+					<Col>Task 2 - Check</Col>
+				</Row>
+			</Container>
+		);
 	}
 
 	return (
