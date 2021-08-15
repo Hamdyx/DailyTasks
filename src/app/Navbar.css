@@ -1,0 +1,25 @@
+.row > .navbar-col {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.side-navbar {
+	display: flex;
+	min-height: 100%;
+	padding: 0 0.25rem 0 0.5rem;
+	background-color: rgb(41, 41, 41);
+}
+
+.side-navbar > .nav {
+	flex: 1;
+	min-height: 100%;
+	justify-content: space-evenly;
+}
+
+.nav > a {
+	color: aliceblue;
+	text-decoration: none;
+}
+.nav > a:hover {
+	color: rgb(136, 136, 136);
+}
