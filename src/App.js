@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import { Navbar } from './app/Navbar';
 
@@ -9,17 +9,14 @@ import { AddTaskForm } from './features/tasks/AddTaskForm';
 import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col } from 'react-bootstrap';
 
 function App() {
 	return (
 		<Router>
-			<Container fluid>
+			<Container fluid className="main-content">
 				<Row>
 					<Col sm={3} md={3} className="navbar-col">
-						<aside className="side-navbar">
-							<Navbar />
-						</aside>
+						<Navbar />
 					</Col>
 					<Col>
 						<div className="App">
@@ -34,9 +31,21 @@ function App() {
 										</React.Fragment>
 									)}
 								/>
-								<Route exact path="/link2" render={() => <div>Link 2</div>} />
-								<Route exact path="/link3" render={() => <div>Link 3</div>} />
-								<Route exact path="/link4" render={() => <div>Link 4</div>} />
+								<Route exact path="/calendar" render={() => <div>Calendar</div>} />
+								<Route
+									exact
+									path="/tasks"
+									render={() => (
+										<React.Fragment>
+											<AddTaskForm />
+											<TasksList />
+										</React.Fragment>
+									)}
+								/>
+								<Route exact path="/projects" render={() => <div>Projects</div>} />
+								<Route exact path="/activity" render={() => <div>Activity</div>} />
+								<Route exact path="/analytics" render={() => <div>Analytics</div>} />
+								<Route exact path="/settings" render={() => <div>Settings</div>} />
 							</Switch>
 						</div>
 					</Col>

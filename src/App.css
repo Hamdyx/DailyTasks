@@ -2,9 +2,13 @@
 	min-height: 100vh;
 }
 
-/* #root > div {
+#root > div {
 	min-height: 100vh;
-} */
+}
+
+.main-content > .row {
+	min-height: 100vh;
+}
 
 .App {
 	text-align: center;
