@@ -1,0 +1,57 @@
+.dashboard-container {
+	padding: 4rem 0;
+}
+
+.tasks-timeframe.btn {
+	background: none;
+	border: none;
+	color: rgb(151, 151, 151);
+}
+
+.tasks-timeframe.btn:hover {
+	background: none;
+	color: rgb(58, 58, 58);
+}
+
+.dashboard-left.col {
+	text-align: left;
+	align-content: flex-start;
+	padding: 0;
+}
+
+.dashboard-left > h5 {
+	padding-left: 0.75rem;
+}
+
+.dashboard-tasks-section > h5 {
+	padding-left: 0.75rem;
+}
+
+.dashboard-tasks-section.container {
+	padding: 3rem 0 0 0;
+}
+
+.dashboard-search.form-control {
+	margin-left: 1rem;
+	background: rgb(201, 201, 201);
+	border: 0;
+	border-radius: 0.75rem;
+	padding: 1rem;
+}
+
+.task-card {
+	background: rgba(255, 255, 255, 0.75);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(3px);
+	-webkit-backdrop-filter: blur(3px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+
+	padding: 1rem 0;
+	margin: 1rem 0;
+}
+
+.avatar-pic {
+	width: 5rem;
+	height: 5rem;
+}

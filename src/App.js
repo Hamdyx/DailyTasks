@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Navbar } from './app/Navbar';
 
 import { TasksList } from './features/tasks/TasksList';
+import { Dashboard } from './Dashboard';
 import { AddTaskForm } from './features/tasks/AddTaskForm';
 import './App.css';
 
@@ -21,16 +22,7 @@ function App() {
 					<Col>
 						<div className="App">
 							<Switch>
-								<Route
-									exact
-									path="/"
-									render={() => (
-										<React.Fragment>
-											<AddTaskForm />
-											<TasksList />
-										</React.Fragment>
-									)}
-								/>
+								<Route exact path="/" render={() => <Dashboard />} />
 								<Route exact path="/calendar" render={() => <div>Calendar</div>} />
 								<Route
 									exact
