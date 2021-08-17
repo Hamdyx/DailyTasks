@@ -32,7 +32,7 @@
 }
 
 .dashboard-search.form-control {
-	margin-left: 1rem;
+	margin: 2.25rem 0 0 0.75rem;
 	background: rgb(201, 201, 201);
 	border: 0;
 	border-radius: 0.75rem;
@@ -52,12 +52,25 @@
 }
 
 .avatar-pic {
-	width: 5rem;
-	height: 5rem;
+	width: 4rem;
+	height: 4rem;
+	border-radius: 5rem;
 }
 
 .profile-info {
 	text-align: left;
+}
+
+.profile-info > p {
+	margin: 0.5rem 0 0.25rem 0;
+}
+
+.profie-icons {
+	text-align: right;
+}
+
+.profie-icons > button {
+	margin: 2rem 0 0 0;
 }
 
 .profile-btn.btn {
@@ -66,13 +79,16 @@
 	color: #000;
 }
 
-.dashboard-procjet-tracker {
+.dashboard-project-tracker.container {
 	background: rgba(255, 255, 255, 0.85);
 	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 	backdrop-filter: blur(5px);
 	-webkit-backdrop-filter: blur(5px);
 	border-radius: 10px;
 	border: 1px solid rgba(255, 255, 255, 0.18);
+	text-align: left;
+	padding: 0 1rem 0 1rem;
+	margin: 2rem 0 2rem 1.5rem;
 }
 
 .dashboard-schedule {
@@ -90,9 +106,32 @@
 	font-size: 1.5rem;
 }
 
+.dashboard-addTask-col {
+	text-align: right;
+}
+
 .dashboard-addTask.btn {
 	background-color: #000;
 	border: 0;
 	padding: 0.75rem 1.5rem 0.75rem 1.5rem;
 	border-radius: 1rem;
+}
+
+.dashboard-addTask.btn:hover {
+	background-color: rgb(71, 70, 70);
+}
+
+.projects-tracker-btn {
+	text-align: right;
+}
+.projects-tracker-btn > button {
+	margin: 1.125rem 0 0 0;
+	background-color: rgb(230, 198, 18);
+	color: #000;
+	border: 0;
+	padding: 0.5rem 1rem 0.7rem 1rem;
+	font-size: 1.25rem;
+}
+.projects-tracker-btn > button.btn:hover {
+	background-color: rgb(155, 133, 8);
 }
