@@ -7,6 +7,7 @@ import { Navbar } from './app/Navbar';
 import { TasksList } from './features/tasks/TasksList';
 import { Dashboard } from './Dashboard';
 import { AddTaskForm } from './features/tasks/AddTaskForm';
+import { TasksMain } from './TasksMain';
 import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,16 +25,7 @@ function App() {
 							<Switch>
 								<Route exact path="/" render={() => <Dashboard />} />
 								<Route exact path="/calendar" render={() => <div>Calendar</div>} />
-								<Route
-									exact
-									path="/tasks"
-									render={() => (
-										<React.Fragment>
-											<AddTaskForm />
-											<TasksList />
-										</React.Fragment>
-									)}
-								/>
+								<Route exact path="/tasks" render={() => <TasksMain />} />
 								<Route exact path="/projects" render={() => <div>Projects</div>} />
 								<Route exact path="/activity" render={() => <div>Activity</div>} />
 								<Route exact path="/analytics" render={() => <div>Analytics</div>} />

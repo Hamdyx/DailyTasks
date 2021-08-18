@@ -12,6 +12,8 @@ import {
 	selectTaskById,
 } from './features/tasks/tasksSlice';
 
+import { TaskCard } from './features/tasks/TaskCard';
+
 import './Dashboard.css';
 import avatarPic from './avatar.png';
 import { unwrapResult } from '@reduxjs/toolkit';
@@ -41,7 +43,7 @@ export const Dashboard = () => {
 	if (taskStatus === 'loading') {
 		content = <div className="loader">Loading...</div>;
 	} else if (taskStatus === 'succeeded') {
-		content = tasksIdsArr.map((taskId) => <TaskComponent key={taskId} taskId={taskId} />);
+		content = tasksIdsArr.map((taskId) => <TaskCard key={taskId} taskId={taskId} />);
 	} else if (taskStatus === 'failed') {
 		content = <div>{error}</div>;
 	}
@@ -123,24 +125,6 @@ const DashboardSchedule = () => {
 	);
 };
 
-const TaskComponent = ({ taskId }) => {
-	const task = useSelector((state) => selectTaskById(state, taskId));
-	// console.log(task.title);
-	let content;
-	if (task) {
-		content = (
-			<React.Fragment>
-				<h6>{`Task ${task.id}`}</h6>
-				<p>{task.title}</p>
-				<p>progress</p>
-			</React.Fragment>
-		);
-	} else {
-		content = <div>Loading</div>;
-	}
-	return <Container className="task-card">{content}</Container>;
-};
-
 const ProjectTracker = () => {
 	return (
 		<Container className="dashboard-project-tracker">
@@ -207,8 +191,8 @@ const ScheduleCalendar = () => {
 
 			<Row>
 				<Col>
-					<TaskComponent />
-					<TaskComponent />
+					<TaskCard taskId={6} />
+					<TaskCard taskId={7} />
 				</Col>
 			</Row>
 		</Container>

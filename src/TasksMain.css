@@ -1,0 +1,24 @@
+.tasks-details {
+	text-align: left;
+}
+
+.tasks-details > .col {
+	border-radius: 0.5rem;
+	margin: 0.5rem;
+}
+
+.total-tasks {
+	background-color: goldenrod;
+}
+
+.tasks-productivity {
+	background-color: #b2c56d;
+}
+
+.tasks-dueDate {
+	background-color: #68c785;
+}
+
+.tasks-attach {
+	background-color: #1cc79d;
+}
