@@ -2,10 +2,50 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Form, Table } from 'react-bootstrap';
 import { IoNotificationsSharp, IoMailSharp, IoCaretForward } from 'react-icons/io5';
 
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	taskAdded,
+	selectAllTasks,
+	selectTasksIds,
+	addNewTask,
+	fetchTasks,
+	selectTaskById,
+} from './features/tasks/tasksSlice';
+
 import './Dashboard.css';
 import avatarPic from './avatar.png';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 export const Dashboard = () => {
+	const dispatch = useDispatch();
+	const [title, setTitle] = useState('title');
+	// const [content, setContent] = useState('content');
+
+	const taskStatus = useSelector((state) => state.tasks.status);
+	const error = useSelector((state) => state.tasks.error);
+	const orderedTasksIds = useSelector(selectTasksIds);
+	let tasksIdsArr = orderedTasksIds.filter((id) => id <= 5);
+	useEffect(async () => {
+		await dispatch(fetchTasks());
+		console.log(orderedTasksIds);
+		console.log(tasksIdsArr);
+		// dispatch(taskAdded({ title, content }));
+		// dispatch(addNewTask({ title, content }));
+		// const resultAction = dispatch(addNewTask());
+
+		// unwrapResult(resultAction);
+	}, []);
+
+	let content;
+
+	if (taskStatus === 'loading') {
+		content = <div className="loader">Loading...</div>;
+	} else if (taskStatus === 'succeeded') {
+		content = tasksIdsArr.map((taskId) => <TaskComponent key={taskId} taskId={taskId} />);
+	} else if (taskStatus === 'failed') {
+		content = <div>{error}</div>;
+	}
+
 	return (
 		<Container fluid className="dashboard-container">
 			<Row>
@@ -20,8 +60,9 @@ export const Dashboard = () => {
 						<Button className="tasks-timeframe">Today</Button>
 						<Button className="tasks-timeframe">Upcoming</Button>
 						<Button className="tasks-timeframe">Later</Button>
-						<TaskComponent />
-						<TaskComponent />
+						{content}
+						{/* <TaskComponent />
+						<TaskComponent /> */}
 					</Container>
 				</Col>
 				<Col>
@@ -82,14 +123,22 @@ const DashboardSchedule = () => {
 	);
 };
 
-const TaskComponent = () => {
-	return (
-		<Container className="task-card">
-			<h6>Task</h6>
-			<p>some description about this task</p>
-			<p>Progress</p>
-		</Container>
-	);
+const TaskComponent = ({ taskId }) => {
+	const task = useSelector((state) => selectTaskById(state, taskId));
+	// console.log(task.title);
+	let content;
+	if (task) {
+		content = (
+			<React.Fragment>
+				<h6>{`Task ${task.id}`}</h6>
+				<p>{task.title}</p>
+				<p>progress</p>
+			</React.Fragment>
+		);
+	} else {
+		content = <div>Loading</div>;
+	}
+	return <Container className="task-card">{content}</Container>;
 };
 
 const ProjectTracker = () => {
@@ -128,7 +177,7 @@ const ScheduleCalendar = () => {
 
 	const getDates = () => {
 		let today = new Date();
-		console.log(today.getDate());
+		// console.log(today.getDate());
 		let datesLimit = 14;
 		let datesArr1 = [];
 		let datesArr2 = [];

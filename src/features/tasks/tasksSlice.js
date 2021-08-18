@@ -5,19 +5,69 @@ import {
 	createSelector,
 	createEntityAdapter,
 } from '@reduxjs/toolkit';
+import { client } from '../../api/client';
 
-const tasksAdapter = createEntityAdapter();
+const tasksAdapter = createEntityAdapter({
+	// selectId: (task) => task.taskId,
+});
 
 const initialState = tasksAdapter.getInitialState({
 	status: 'ide',
 	error: null,
 });
 
+const fakeApi = 'https://jsonplaceholder.typicode.com/todos/';
+
+export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
+	console.log('fetchTasks Init');
+	const response = await client.get(fakeApi);
+	console.log('fetchTasks done');
+	console.log(response);
+	return response;
+});
+
+export const addNewTask = createAsyncThunk('tasks/addNewTask', async (initialTask) => {
+	const response = { title: 'task', content: 'task description' };
+
+	return response.tasks;
+});
+
 const tasksSlice = createSlice({
 	name: 'tasks',
 	initialState,
 	reducers: {
-		taskAdded: {},
+		taskAdded: {
+			reducer(state, action) {
+				state.tasks.entities.push(action.payload);
+				// tasksAdapter.addOne;
+			},
+			prepare(title, content) {
+				return {
+					payload: {
+						id: nanoid(),
+						date: new Date().toISOString(),
+						title,
+						content,
+					},
+				};
+			},
+		},
+	},
+	extraReducers: {
+		[fetchTasks.pending]: (state, action) => {
+			state.status = 'loading';
+		},
+		[fetchTasks.fulfilled]: (state, action) => {
+			state.status = 'succeeded';
+
+			tasksAdapter.upsertMany(state, action.payload);
+		},
+		[fetchTasks.rejected]: (state, action) => {
+			state.status = 'failed';
+			state.error = action.error.message;
+		},
+		// Use the `addOne` reducer for the fulfilled case
+		[addNewTask.fulfilled]: tasksAdapter.addOne,
 	},
 });
 
