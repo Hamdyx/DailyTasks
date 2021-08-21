@@ -27,9 +27,10 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
 });
 
 export const addNewTask = createAsyncThunk('tasks/addNewTask', async (initialTask) => {
-	const response = { title: 'task', content: 'task description' };
+	// const response = { task: initialTask };
+	const response = await client.post(fakeApi, { task: initialTask });
 
-	return response.tasks;
+	return response.task;
 });
 
 const tasksSlice = createSlice({
@@ -52,6 +53,16 @@ const tasksSlice = createSlice({
 				};
 			},
 		},
+		taskUpdated(state, action) {
+			const { id, title, details, isCompleted, progress } = action.payload;
+			const existingTask = state.entities[id];
+			if (existingTask) {
+				existingTask.title = title;
+				existingTask.details = details;
+				existingTask.isCompleted = isCompleted;
+				existingTask.progress = progress;
+			}
+		},
 	},
 	extraReducers: {
 		[fetchTasks.pending]: (state, action) => {
@@ -71,7 +82,7 @@ const tasksSlice = createSlice({
 	},
 });
 
-export const { taskAdded } = tasksSlice.actions;
+export const { taskAdded, taskUpdated } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
 

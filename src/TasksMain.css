@@ -22,3 +22,14 @@
 .tasks-attach {
 	background-color: #1cc79d;
 }
+
+.task-edit-icon {
+	text-align: right;
+}
+
+.task-edit-icon > .btn {
+	background: none;
+	color: #000;
+	border: 0;
+	margin-top: -0.5rem;
+}

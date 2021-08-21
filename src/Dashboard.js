@@ -28,7 +28,7 @@ export const Dashboard = () => {
 	const orderedTasksIds = useSelector(selectTasksIds);
 	let tasksIdsArr = orderedTasksIds.filter((id) => id <= 5);
 	useEffect(async () => {
-		await dispatch(fetchTasks());
+		// await dispatch(fetchTasks());
 		console.log(orderedTasksIds);
 		console.log(tasksIdsArr);
 		// dispatch(taskAdded({ title, content }));

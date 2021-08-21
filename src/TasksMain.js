@@ -6,8 +6,32 @@ import { TasksList } from './features/tasks/TasksList';
 import { TaskCard } from './features/tasks/TaskCard';
 
 import './TasksMain.css';
+import { useSelector } from 'react-redux';
+import { selectAllTasks, selectTasksIds } from './features/tasks/tasksSlice';
 
 export const TasksMain = () => {
+	const tasksIds = useSelector(selectTasksIds);
+	let allTasks = useSelector(selectAllTasks);
+
+	const content = tasksIds.map((id) => <TaskCard taskId={id} />);
+
+	let nextTasks = allTasks.filter(
+		(task) => task.isCompleted === false && task.progress === 0
+	);
+	let nextContent = nextTasks.map((task) => <TaskCard taskId={task.id} />);
+
+	let inProgressTasks = allTasks.filter(
+		(task) => task.progress > 0 && task.progress < 100
+	);
+	let inProgressContent = inProgressTasks.map((task) => <TaskCard taskId={task.id} />);
+
+	let inReviewTasks = allTasks.filter(
+		(task) => task.progress >= 99 && task.isCompleted === false
+	);
+	let inReviewContent = inReviewTasks.map((task) => <TaskCard taskId={task.id} />);
+
+	let finishedTasks = allTasks.filter((task) => task.isCompleted === true);
+	let finishedContent = finishedTasks.map((task) => <TaskCard taskId={task.id} />);
 	return (
 		<Container fluid>
 			<Row>
@@ -36,27 +60,19 @@ export const TasksMain = () => {
 			<Row>
 				<Col>
 					Next up
-					<TaskCard taskId={1} />
-					<TaskCard taskId={2} />
-					<TaskCard taskId={3} />
+					{nextContent}
 				</Col>
 				<Col>
 					In Progress
-					<TaskCard taskId={4} />
-					<TaskCard taskId={5} />
-					<TaskCard taskId={6} />
+					{inProgressContent}
 				</Col>
 				<Col>
 					In review
-					<TaskCard taskId={7} />
-					<TaskCard taskId={8} />
-					<TaskCard taskId={9} />
+					{inReviewContent}
 				</Col>
 				<Col>
 					Finished
-					<TaskCard taskId={10} />
-					<TaskCard taskId={11} />
-					<TaskCard taskId={12} />
+					{finishedContent}
 				</Col>
 			</Row>
 		</Container>
