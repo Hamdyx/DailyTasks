@@ -54,11 +54,13 @@ const tasksSlice = createSlice({
 			},
 		},
 		taskUpdated(state, action) {
-			const { id, title, details, isCompleted, progress } = action.payload;
+			const { id, title, details, additionalNotes, isCompleted, progress } =
+				action.payload;
 			const existingTask = state.entities[id];
 			if (existingTask) {
 				existingTask.title = title;
 				existingTask.details = details;
+				existingTask.additionalNotes = additionalNotes;
 				existingTask.isCompleted = isCompleted;
 				existingTask.progress = progress;
 			}

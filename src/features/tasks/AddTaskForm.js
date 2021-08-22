@@ -8,6 +8,7 @@ import { Form, Container, Row, Col, Button } from 'react-bootstrap';
 export const AddTaskForm = () => {
 	const [title, setTitle] = useState('');
 	const [details, setDetails] = useState('');
+	const [additionalNotes, setAdditionalNotes] = useState('');
 	const [addRequestStatus, setAddRequestStatus] = useState('');
 
 	const dispatch = useDispatch();
@@ -23,9 +24,10 @@ export const AddTaskForm = () => {
 			console.log('calling dispatch');
 			dispatch(
 				addNewTask({
+					id: new Date().toISOString(),
 					title,
 					details,
-					id: new Date().toISOString(),
+					additionalNotes,
 					isCompleted: false,
 					progress: 0,
 				})

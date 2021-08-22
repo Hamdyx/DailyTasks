@@ -18,7 +18,6 @@ import './Navbar.css';
 export const Navbar = () => {
 	useEffect(() => {
 		let navDom = document.querySelector('.nav-section');
-		console.log(navDom.childNodes);
 		navDom.firstChild.classList.add('active');
 		navDom.childNodes.forEach((el) => {
 			el.addEventListener('click', (ev) => {

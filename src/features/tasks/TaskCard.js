@@ -5,6 +5,7 @@ import { selectTaskById, taskUpdated } from './tasksSlice';
 import { Container, Row, Col, Form, ProgressBar, Button } from 'react-bootstrap';
 
 import { FaEdit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export const TaskCard = ({ taskId }) => {
 	const dispatch = useDispatch();
@@ -20,8 +21,8 @@ export const TaskCard = ({ taskId }) => {
 		isCompleted = ev.target.checked;
 		let progress = isCompleted ? 100 : 0;
 		// let isCompleted = ev.target.checked;
-		let { id, title, details } = task;
-		dispatch(taskUpdated({ id, title, details, isCompleted, progress }));
+		let { id, title, details, additionalNotes } = task;
+		dispatch(taskUpdated({ id, title, details, additionalNotes, isCompleted, progress }));
 	};
 
 	const onTaskEdit = () => {
@@ -41,13 +42,20 @@ export const TaskCard = ({ taskId }) => {
 						<p>{task.title}</p>
 					</Col>
 					<Col className="task-edit-icon">
-						<Button onClick={onTaskEdit}>
+						<Link to={`/editTask/${task.id}`}>
 							<FaEdit />
-						</Button>
+						</Link>
+						{/* <Link to={`/tasks/${task.id}`}>
+							<FaEdit />
+						</Link> */}
+						{/* <Button onClick={onTaskEdit}>
+							<FaEdit />
+						</Button> */}
 					</Col>
 				</Row>
 				<ProgressBar now={task.progress} label={`${task.progress}%`} animated />
 				<p>{task.details}</p>
+				<p>{task.additionalNotes}</p>
 				<p>{`${task.isCompleted}`}</p>
 				<Form.Check type="checkbox" onChange={onTaskCheck} checked={isCompleted} />
 			</React.Fragment>

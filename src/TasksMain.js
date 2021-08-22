@@ -18,20 +18,26 @@ export const TasksMain = () => {
 	let nextTasks = allTasks.filter(
 		(task) => task.isCompleted === false && task.progress === 0
 	);
-	let nextContent = nextTasks.map((task) => <TaskCard taskId={task.id} />);
+	let nextContent = nextTasks.map((task) => <TaskCard key={task.id} taskId={task.id} />);
 
 	let inProgressTasks = allTasks.filter(
 		(task) => task.progress > 0 && task.progress < 100
 	);
-	let inProgressContent = inProgressTasks.map((task) => <TaskCard taskId={task.id} />);
+	let inProgressContent = inProgressTasks.map((task) => (
+		<TaskCard key={task.id} taskId={task.id} />
+	));
 
 	let inReviewTasks = allTasks.filter(
 		(task) => task.progress >= 99 && task.isCompleted === false
 	);
-	let inReviewContent = inReviewTasks.map((task) => <TaskCard taskId={task.id} />);
+	let inReviewContent = inReviewTasks.map((task) => (
+		<TaskCard key={task.id} taskId={task.id} />
+	));
 
 	let finishedTasks = allTasks.filter((task) => task.isCompleted === true);
-	let finishedContent = finishedTasks.map((task) => <TaskCard taskId={task.id} />);
+	let finishedContent = finishedTasks.map((task) => (
+		<TaskCard key={task.id} taskId={task.id} />
+	));
 	return (
 		<Container fluid>
 			<Row>
