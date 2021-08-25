@@ -60,7 +60,8 @@ export const EditTaskForm = ({ match }) => {
 	const onProgressUpdated = () => {
 		console.log(`target: ${target}`);
 		console.log(`achieved: ${achieved}`);
-		setProgress((achieved / target) * 100);
+		let _progress = ((achieved / target) * 100).toFixed(2);
+		setProgress(Number(_progress));
 	};
 
 	const onSaveTaskClicked = () => {
@@ -69,7 +70,7 @@ export const EditTaskForm = ({ match }) => {
 		console.log(`details: ${details}`);
 		console.log(`additional notes: ${additionalNotes}`);
 		console.log(`progress: ${progress}`);
-		let { isCompleted } = task;
+		// let { isCompleted } = task;
 		if (title && details) {
 			dispatch(
 				taskUpdated({
