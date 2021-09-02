@@ -4,10 +4,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import { Navbar } from './app/Navbar';
 
-import { TasksList } from './features/tasks/TasksList';
 import { Dashboard } from './Dashboard';
-import { AddTaskForm } from './features/tasks/AddTaskForm';
-import { TasksMain } from './TasksMain';
+import { TasksMain } from './features/tasks/TasksMain';
 import { EditTaskForm } from './features/tasks/EditTaskForm';
 import './App.css';
 

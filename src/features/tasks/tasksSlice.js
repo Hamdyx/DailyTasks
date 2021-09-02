@@ -12,7 +12,7 @@ const tasksAdapter = createEntityAdapter({
 });
 
 const initialState = tasksAdapter.getInitialState({
-	status: 'ide',
+	status: 'idle',
 	error: null,
 });
 

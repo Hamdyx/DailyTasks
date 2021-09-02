@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Image, Button, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Image } from 'react-bootstrap';
 
-import { AddTaskForm } from './features/tasks/AddTaskForm';
-import { TasksList } from './features/tasks/TasksList';
-import { TaskCard } from './features/tasks/TaskCard';
+import { AddTaskForm } from './AddTaskForm';
+import { TaskCard } from './TaskCard';
 
-import tasksArt from './tasks_art.svg';
+import tasksArt from '../../tasks_art.svg';
 
-import './TasksMain.css';
+import '../../TasksMain.css';
 import { useSelector } from 'react-redux';
-import { selectAllTasks, selectTasksIds } from './features/tasks/tasksSlice';
+import { selectAllTasks, selectTasksIds } from './tasksSlice';
 
 export const TasksMain = () => {
 	const [today, setToday] = useState('');
-	const [productivity, setProductivity] = useState(0);
 
 	const tasksIds = useSelector(selectTasksIds);
 	let allTasks = useSelector(selectAllTasks);
@@ -32,8 +30,6 @@ export const TasksMain = () => {
 		// setProductivity(testProgress);
 		console.log(`avgProgress: ${avgProgress}`);
 	}
-
-	const content = tasksIds.map((id) => <TaskCard taskId={id} />);
 
 	let nextTasks = allTasks.filter(
 		(task) => task.isCompleted === false && task.progress === 0
@@ -87,7 +83,7 @@ export const TasksMain = () => {
 					<p>85</p>
 				</Col>
 			</Row>
-			<Row>
+			<Row className="tasks-sections">
 				<Col>
 					<p>
 						Next up <span className="tasks-status-badge">{nextContent.length}</span>

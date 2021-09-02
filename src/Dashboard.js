@@ -2,41 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Form, Table } from 'react-bootstrap';
 import { IoNotificationsSharp, IoMailSharp, IoCaretForward } from 'react-icons/io5';
 
-import { useDispatch, useSelector } from 'react-redux';
-import {
-	taskAdded,
-	selectAllTasks,
-	selectTasksIds,
-	addNewTask,
-	fetchTasks,
-	selectTaskById,
-} from './features/tasks/tasksSlice';
+import { useSelector } from 'react-redux';
+import { selectAllTasks, selectTasksIds } from './features/tasks/tasksSlice';
 
 import { TaskCard } from './features/tasks/TaskCard';
 
 import './Dashboard.css';
 import avatarPic from './avatar.png';
-import { unwrapResult } from '@reduxjs/toolkit';
 
 export const Dashboard = () => {
-	const dispatch = useDispatch();
-	const [title, setTitle] = useState('title');
-	// const [content, setContent] = useState('content');
-
 	const taskStatus = useSelector((state) => state.tasks.status);
 	const error = useSelector((state) => state.tasks.error);
-	const orderedTasksIds = useSelector(selectTasksIds);
-	let tasksIdsArr = orderedTasksIds.filter((id) => id <= 5);
-	useEffect(async () => {
-		// await dispatch(fetchTasks());
-		console.log(orderedTasksIds);
-		console.log(tasksIdsArr);
-		// dispatch(taskAdded({ title, content }));
-		// dispatch(addNewTask({ title, content }));
-		// const resultAction = dispatch(addNewTask());
-
-		// unwrapResult(resultAction);
-	}, []);
+	const allTasksIds = useSelector(selectTasksIds);
+	let tasksIdsArr = allTasksIds.filter((id) => id <= 5);
 
 	let content;
 
@@ -46,6 +24,8 @@ export const Dashboard = () => {
 		content = tasksIdsArr.map((taskId) => <TaskCard key={taskId} taskId={taskId} />);
 	} else if (taskStatus === 'failed') {
 		content = <div>{error}</div>;
+	} else if (taskStatus === 'idle') {
+		content = allTasksIds.map((taskId) => <TaskCard key={taskId} taskId={taskId} />);
 	}
 
 	return (
@@ -63,8 +43,6 @@ export const Dashboard = () => {
 						<Button className="tasks-timeframe">Upcoming</Button>
 						<Button className="tasks-timeframe">Later</Button>
 						{content}
-						{/* <TaskComponent />
-						<TaskComponent /> */}
 					</Container>
 				</Col>
 				<Col>
@@ -87,20 +65,6 @@ const DashboardSchedule = () => {
 		setToday(_today);
 		setCurrMonth(_month);
 	}, []);
-	const monthNames = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December',
-	];
 	return (
 		<Container className="dashboard-schedule">
 			<Row>
@@ -144,9 +108,8 @@ const ProjectTracker = () => {
 };
 
 const ScheduleCalendar = () => {
-	const [days, setDays] = useState('');
-
-	useEffect(() => {
+	const allTasks = useSelector(selectAllTasks);
+	const getDays = () => {
 		let daysInWeek = [
 			'Sunday',
 			'Monday',
@@ -156,12 +119,13 @@ const ScheduleCalendar = () => {
 			'Friday',
 			'Saturday',
 		];
-		setDays(daysInWeek.map((d, i) => <th key={i}>{d.slice(0, 3)}</th>));
-	}, []);
+
+		let days = daysInWeek.map((d, i) => <th key={i}>{d.slice(0, 3)}</th>);
+
+		return days;
+	};
 
 	const getDates = () => {
-		let today = new Date();
-		// console.log(today.getDate());
 		let datesLimit = 14;
 		let datesArr1 = [];
 		let datesArr2 = [];
@@ -172,28 +136,55 @@ const ScheduleCalendar = () => {
 			datesArr2.push(<td key={i}>{i}</td>);
 		}
 
-		return (
-			<>
-				<tr>{datesArr1}</tr>
-				<tr>{datesArr2}</tr>
-			</>
-		);
+		let content;
+
+		if (datesArr1 && datesArr2) {
+			content = (
+				<tbody>
+					<tr>{datesArr1}</tr>
+					<tr>{datesArr2}</tr>
+				</tbody>
+			);
+		} else {
+			content = (
+				<tbody>
+					<tr>
+						{[1, 2, 3, 4, 5, 6, 7].map((i) => (
+							<td key={i}>{i}</td>
+						))}
+					</tr>
+					<tr>
+						{[1, 2, 3, 4, 5, 6, 7].map((i) => (
+							<td key={i}>{i}</td>
+						))}
+					</tr>
+				</tbody>
+			);
+		}
+
+		return content;
+	};
+
+	const getTasks = () => {
+		let tasksContent = [];
+		for (let i = 0; i < 3 && i < allTasks.length; i++) {
+			let _task = allTasks[i];
+			tasksContent.push(<TaskCard key={_task.id} taskId={_task.id} />);
+		}
+		return tasksContent;
 	};
 
 	return (
 		<Container>
 			<Table>
 				<thead>
-					<tr>{days}</tr>
+					<tr>{getDays()}</tr>
 				</thead>
-				<tbody>{getDates()}</tbody>
+				{getDates()}
 			</Table>
 
 			<Row>
-				<Col>
-					<TaskCard taskId={6} />
-					<TaskCard taskId={7} />
-				</Col>
+				<Col>{getTasks()}</Col>
 			</Row>
 		</Container>
 	);

@@ -9,6 +9,10 @@
 	margin-top: 5rem;
 }
 
+.tasks-sections.row {
+	margin-top: 1rem;
+}
+
 .tasks-details {
 	text-align: left;
 }
@@ -20,7 +24,9 @@
 }
 
 .total-tasks {
-	background-color: goldenrod;
+	background-color: #e1af19;
+	/* background: linear-gradient(129deg, #524730 00%, #dca52d 46%, #e1af19 100%);
+	transform: skew(20deg, 0deg); */
 }
 
 .tasks-productivity {
