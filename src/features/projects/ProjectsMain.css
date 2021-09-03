@@ -1,0 +1,61 @@
+.projects-header {
+	text-align: left;
+}
+
+.categories-row.row {
+	margin: 2rem 1rem;
+}
+
+.projects-row.row {
+	margin: 2rem 1rem;
+}
+
+.header-text {
+	margin: 4rem 0;
+}
+
+.category-card {
+	background: rgb(252, 128, 120);
+	background: linear-gradient(
+		325deg,
+		rgba(252, 128, 120, 1) 35%,
+		rgba(255, 96, 120, 1) 100%
+	);
+	color: #ffffff;
+	box-shadow: 0 0 10px rgba(52, 58, 64, 1);
+	border-radius: 0.75rem;
+	padding: 1rem;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-left > h6 {
+	margin-top: 0.25rem;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.projects-btn.btn {
+	margin: 0 0.125rem;
+	background: none;
+	color: #999999;
+	border-radius: 1rem;
+	border: 1px solid #999999;
+}
+
+.projects-btn.btn:hover {
+	background: #ffff;
+	color: #9dd0f1;
+	border: 1px solid #ffff;
+}
+
+.projects-btn.btn.active {
+	background: #ffff;
+	color: #9dd0f1;
+	border-radius: 1rem;
+	border: 1px solid #ffff;
+}
