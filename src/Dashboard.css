@@ -5,12 +5,12 @@
 .tasks-timeframe.btn {
 	background: none;
 	border: none;
-	color: rgb(151, 151, 151);
+	color: #124861;
 }
 
 .tasks-timeframe.btn:hover {
 	background: none;
-	color: rgb(58, 58, 58);
+	color: #7fccf0;
 }
 
 .dashboard-left.col {
@@ -33,15 +33,20 @@
 
 .dashboard-search.form-control {
 	margin: 2.25rem 0 0 0.75rem;
-	background: rgb(201, 201, 201);
+	background: #646566;
+	color: #e6ebed;
 	border: 0;
 	border-radius: 0.75rem;
 	padding: 1rem;
 }
 
+.dashboard-search.form-control::placeholder {
+	color: #e6ebed;
+}
+
 .task-card {
 	background: rgba(255, 255, 255, 0.75);
-	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	box-shadow: 0 0.125rem 0.25rem 0 rgba(31, 38, 135, 0.37);
 	backdrop-filter: blur(3px);
 	-webkit-backdrop-filter: blur(3px);
 	border-radius: 10px;
@@ -76,12 +81,18 @@
 .profile-btn.btn {
 	background: none;
 	border: 0;
-	color: #000;
+	color: #124861;
+}
+
+.profile-btn.btn:hover {
+	background: none;
+	border: 0;
+	color: #6ec3ea;
 }
 
 .dashboard-project-tracker.container {
 	background: rgba(255, 255, 255, 0.85);
-	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	box-shadow: 0 0.125rem 0.25rem 0 rgba(31, 38, 135, 0.37);
 	backdrop-filter: blur(5px);
 	-webkit-backdrop-filter: blur(5px);
 	border-radius: 10px;
@@ -97,7 +108,6 @@
 }
 
 .dashboard-fulldate {
-	color: rgb(104, 104, 104);
 	font-size: 1.25rem;
 }
 
@@ -111,14 +121,15 @@
 }
 
 .dashboard-addTask.btn {
-	background-color: #000;
+	background-color: #124861;
 	border: 0;
 	padding: 0.75rem 1.5rem 0.75rem 1.5rem;
 	border-radius: 1rem;
 }
 
 .dashboard-addTask.btn:hover {
-	background-color: rgb(71, 70, 70);
+	background-color: #7fccf0;
+	color: #124861;
 }
 
 .projects-tracker-btn {
@@ -126,12 +137,13 @@
 }
 .projects-tracker-btn > button {
 	margin: 1.125rem 0 0 0;
-	background-color: rgb(230, 198, 18);
-	color: #000;
+	background-color: #124861;
+	color: #e6ebed;
 	border: 0;
 	padding: 0.5rem 1rem 0.7rem 1rem;
 	font-size: 1.25rem;
 }
 .projects-tracker-btn > button.btn:hover {
-	background-color: rgb(155, 133, 8);
+	background-color: #6ec3ea;
+	color: #124861;
 }

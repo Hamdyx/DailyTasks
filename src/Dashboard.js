@@ -32,7 +32,7 @@ export const Dashboard = () => {
 		<Container fluid className="dashboard-container">
 			<Row>
 				<Col className="dashboard-left">
-					<h5 className="text-muted">Hello, Cryptojoint</h5>
+					<h5>Hello, Cryptojoint</h5>
 					<h5>You've got</h5>
 					<h5>8 tasks today</h5>
 					<Form.Control placeholder="Search something..." className="dashboard-search" />

@@ -3,7 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { taskUpdated, selectTaskById } from './tasksSlice';
 
-import { Col, Container, Form, Row, Button, ProgressBar } from 'react-bootstrap';
+import {
+	Col,
+	Container,
+	Form,
+	Row,
+	Button,
+	ProgressBar,
+	FloatingLabel,
+} from 'react-bootstrap';
 
 export const EditTaskForm = ({ match }) => {
 	const { taskId } = match.params;
@@ -94,43 +102,58 @@ export const EditTaskForm = ({ match }) => {
 			</Row>
 			<Row>
 				<Col>
-					<Form.Label>Task Title</Form.Label>
-					<Form.Control
-						placeholder="task title"
-						value={title}
-						onChange={onTitleChanged}
-					/>
+					<FloatingLabel label="Task Title" className="mb-3">
+						<Form.Control
+							placeholder="Task Title"
+							value={title}
+							onChange={onTitleChanged}
+						/>
+					</FloatingLabel>
 				</Col>
 				<Col>
-					<Form.Label>Task Details</Form.Label>
-					<Form.Control
-						placeholder="task details"
-						value={details}
-						onChange={onDetailsChanged}
-					/>
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<Form.Label>Task Additional Notes</Form.Label>
-					<Form.Control
-						placeholder="task additional notes..."
-						value={additionalNotes}
-						onChange={onAdditionalNotesChanged}
-					/>
+					<FloatingLabel label="Details" className="mb-3">
+						<Form.Control
+							placeholder="Add more detail to this task..."
+							value={details}
+							onChange={onDetailsChanged}
+						/>
+					</FloatingLabel>
 				</Col>
 			</Row>
 			<Row>
 				<Col>
-					<Form.Label>Set Target</Form.Label>
-					<Form.Control type="number" onChange={onTargetChanged} value={target} />
+					<FloatingLabel label="Comments" className="mb-3">
+						<Form.Control
+							placeholder="Add extra notes or comments to this task..."
+							value={additionalNotes}
+							onChange={onAdditionalNotesChanged}
+						/>
+					</FloatingLabel>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<FloatingLabel label="Target" className="mb-3">
+						<Form.Control
+							placeholder="Task Goal"
+							value={target}
+							onChange={onTargetChanged}
+						/>
+					</FloatingLabel>
 				</Col>
 				<Col>
-					<Form.Label>Set Achieved</Form.Label>
-					<Form.Control type="number" onChange={onAchievedChanged} value={achieved} />
+					<FloatingLabel label="Achieved" className="mb-3">
+						<Form.Control
+							placeholder="Task Goal"
+							value={achieved}
+							onChange={onAchievedChanged}
+						/>
+					</FloatingLabel>
 				</Col>
 				<Col>
-					<Button onClick={onProgressUpdated}>Set Progress</Button>
+					<Button onClick={onProgressUpdated} className="customBg-btn">
+						Set Progress
+					</Button>
 				</Col>
 			</Row>
 			<Row>
@@ -144,7 +167,9 @@ export const EditTaskForm = ({ match }) => {
 					<Form.Check type="checkbox" onChange={onTaskCheck} checked={isCompleted} />
 				</Col>
 				<Col>
-					<Button onClick={onSaveTaskClicked}>Save Task</Button>
+					<Button onClick={onSaveTaskClicked} className="customBg-btn">
+						Save Task
+					</Button>
 				</Col>
 			</Row>
 		</Container>

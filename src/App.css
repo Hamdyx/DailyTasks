@@ -12,6 +12,7 @@
 
 .App {
 	text-align: center;
+	color: #124861;
 }
 
 .App-logo {
@@ -50,6 +51,21 @@
 	}
 }
 
+.progress-bar {
+	background-color: #124861 !important;
+}
+
+.form-check-input:checked {
+	background-color: #124861 !important;
+	border-color: #124861 !important;
+}
+.form-check-input:focus {
+	box-shadow: none !important;
+}
 .main-page {
-	background-color: #f1f1f1;
+	background-color: #e1e4e6;
+}
+
+.text-header {
+	color: #124861;
 }

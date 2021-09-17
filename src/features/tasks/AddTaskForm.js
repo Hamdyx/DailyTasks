@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { addNewTask } from './tasksSlice';
 
-import { Form, Container, Row, Col, Button, Modal } from 'react-bootstrap';
+import { Form, Container, Row, Col, Button, Modal, FloatingLabel } from 'react-bootstrap';
 
 export const AddTaskForm = () => {
 	const [title, setTitle] = useState('');
@@ -50,17 +50,19 @@ export const AddTaskForm = () => {
 				here you can track all of your tasks which are upcoming, in progress or already
 				finished, also you can add new customised tasks
 			</p>
-			<Button onClick={handleModalShow}>ADD TASK</Button>
+			<Button className="customBg-btn" onClick={handleModalShow}>
+				ADD TASK
+			</Button>
 
 			<Modal show={show} onHide={handleModalClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Add new task</Modal.Title>
+					<Modal.Title>Add New Task</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Form>
 						<Row>
 							<Col>
-								<Form.Group>
+								{/* <Form.Group>
 									<Form.Label htmlFor="taskTitle">Task Title: </Form.Label>
 									<Form.Control
 										type="text"
@@ -68,12 +70,23 @@ export const AddTaskForm = () => {
 										value={title}
 										onChange={onTitleChanged}
 									/>
-								</Form.Group>
+								</Form.Group> */}
+								<FloatingLabel
+									controlId="floatingInput"
+									label="Task name"
+									className="mb-3"
+								>
+									<Form.Control
+										placeholder="task name"
+										value={title}
+										onChange={onTitleChanged}
+									/>
+								</FloatingLabel>
 							</Col>
 						</Row>
 						<Row>
 							<Col>
-								<Form.Group>
+								{/* <Form.Group>
 									<Form.Label htmlFor="taskDetails">Task Details: </Form.Label>
 									<Form.Control
 										type="text"
@@ -81,12 +94,23 @@ export const AddTaskForm = () => {
 										value={details}
 										onChange={(e) => setDetails(e.target.value)}
 									/>
-								</Form.Group>
+								</Form.Group> */}
+								<FloatingLabel
+									controlId="floatingInput"
+									label="Description"
+									className="mb-3"
+								>
+									<Form.Control
+										placeholder="Add more detail to this task..."
+										value={details}
+										onChange={(e) => setDetails(e.target.value)}
+									/>
+								</FloatingLabel>
 							</Col>
 						</Row>
 						<Row>
 							<Col>
-								<Form.Group>
+								{/* <Form.Group>
 									<Form.Label htmlFor="taskDetails">Additional Notes: </Form.Label>
 									<Form.Control
 										type="text"
@@ -94,7 +118,18 @@ export const AddTaskForm = () => {
 										value={additionalNotes}
 										onChange={(e) => setAdditionalNotes(e.target.value)}
 									/>
-								</Form.Group>
+								</Form.Group> */}
+								<FloatingLabel
+									controlId="floatingInput"
+									label="Comments"
+									className="mb-3"
+								>
+									<Form.Control
+										placeholder="Add extra notes or comments to this task..."
+										value={additionalNotes}
+										onChange={(e) => setAdditionalNotes(e.target.value)}
+									/>
+								</FloatingLabel>
 							</Col>
 						</Row>
 					</Form>
@@ -103,7 +138,9 @@ export const AddTaskForm = () => {
 					<Button variant="secondary" onClick={handleModalClose}>
 						Close
 					</Button>
-					<Button onClick={onFormSubmit}>Add Task</Button>
+					<Button onClick={onFormSubmit} className="customBg-btn">
+						Add Task
+					</Button>
 				</Modal.Footer>
 			</Modal>
 		</section>
