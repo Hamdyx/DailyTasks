@@ -8,6 +8,7 @@ import { Dashboard } from './Dashboard';
 import { TasksMain } from './features/tasks/TasksMain';
 import { ProjectsMain } from './features/projects/ProjectsMain';
 import { EditTaskForm } from './features/tasks/EditTaskForm';
+import { EditProjectForm } from './features/projects/EditProjectForm';
 import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -33,6 +34,7 @@ function App() {
 								<Route exact path="/settings" render={() => <div>Settings</div>} />
 								<Route exact path="/tasks/:taskId" component={SingleTaskPage} />
 								<Route exact path="/editTask/:taskId" component={EditTaskForm} />
+								<Route exact path="/editProject/:projectId" component={EditProjectForm} />
 								<Redirect to="/" />
 							</Switch>
 						</div>

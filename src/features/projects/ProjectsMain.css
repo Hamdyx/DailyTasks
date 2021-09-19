@@ -2,6 +2,10 @@
 	text-align: left;
 }
 
+.add-project-form {
+	margin-top: 5rem;
+}
+
 .categories-row.row {
 	margin: 2rem 1rem;
 }
@@ -15,14 +19,37 @@
 }
 
 .category-card {
-	background: rgb(252, 128, 120);
+	/* background: rgb(252, 128, 120);
 	background: linear-gradient(
 		325deg,
 		rgba(252, 128, 120, 1) 35%,
 		rgba(255, 96, 120, 1) 100%
+	); */
+
+	/* background: rgb(110, 195, 234);
+	background: linear-gradient(
+		325deg,
+		rgba(110, 195, 234, 1) 0%,
+		rgba(18, 72, 97, 0.5) 50%,
+		rgba(41, 50, 65, 1) 100%
+	); */
+
+	/* background: rgb(41, 50, 65);
+	background: linear-gradient(
+		325deg,
+		rgba(41, 50, 65, 1) 0%,
+		rgba(18, 72, 97, 0.5) 50%,
+		rgba(110, 195, 234, 1) 100%
+	); */
+
+	background: rgb(110, 195, 234);
+	background: linear-gradient(
+		325deg,
+		rgba(110, 195, 234, 0.75) 0%,
+		rgba(18, 72, 97, 0.75) 75%
 	);
 	color: #ffffff;
-	box-shadow: 0 0 10px rgba(52, 58, 64, 1);
+	box-shadow: 0 0 0.5rem 0.0625rem rgba(52, 58, 64, 1);
 	border-radius: 0.75rem;
 	padding: 1rem;
 }

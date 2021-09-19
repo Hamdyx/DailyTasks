@@ -1,5 +1,10 @@
 import React from 'react';
+import { selectProjectIds } from './projectsSlice';
+import { useSelector } from 'react-redux';
 import { Container, Row, Col, Button, Image } from 'react-bootstrap';
+
+import { AddProjectForm } from './AddProjectForm';
+import { ProjectCard } from './ProjectCard';
 
 import projectArt from '../../projects-art.svg';
 import webDesign from '../../web-design-art.png';
@@ -18,14 +23,19 @@ const ColoredLine = ({ color }) => (
 );
 
 export const ProjectsMain = () => {
+	const projectsIds = useSelector(selectProjectIds);
+
+	let content;
+
+	if (projectsIds) {
+		content = projectsIds.map((id) => <ProjectCard key={id} projectId={id} />);
+	}
+
 	return (
 		<Container fluid>
 			<Row>
 				<Col className="projects-header">
-					<section className="header-text">
-						<h5>Hello %USERNAME%</h5>
-						<p>You can track all of your projects here</p>
-					</section>
+					<AddProjectForm />
 				</Col>
 				<Col>
 					<Image src={projectArt} alt="project art" width={350} height={250} />
@@ -48,7 +58,7 @@ export const ProjectsMain = () => {
 				</Col>
 				<Col>
 					<span>
-						<ColoredLine color="#000000" />
+						<ColoredLine color="#124861" />
 					</span>
 				</Col>
 				<Col className="text-right" sm={{ span: 3 }}>
@@ -56,17 +66,7 @@ export const ProjectsMain = () => {
 					<Button className="projects-btn">pending</Button>
 				</Col>
 			</Row>
-			<Row className="projects-row">
-				<Col>
-					<ProjectCard />
-				</Col>
-				<Col>
-					<ProjectCard />
-				</Col>
-				<Col>
-					<ProjectCard />
-				</Col>
-			</Row>
+			<Row className="projects-row">{content}</Row>
 		</Container>
 	);
 };
@@ -81,26 +81,6 @@ const CategoryCard = ({ imgSrc }) => {
 				<Col className="text-left">
 					<h5>Category Title</h5>
 					<p>22 Task</p>
-				</Col>
-			</Row>
-		</Container>
-	);
-};
-
-const ProjectCard = () => {
-	return (
-		<Container className="category-card">
-			<Row>
-				<Col>Project Title</Col>
-			</Row>
-			<Row>
-				<Col>
-					<p>10.00 AM - 4.30 PM</p>
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<p>Progress</p>
 				</Col>
 			</Row>
 		</Container>

@@ -13,6 +13,7 @@
 .App {
 	text-align: center;
 	color: #124861;
+	margin-top: 1rem;
 }
 
 .App-logo {
@@ -68,4 +69,41 @@
 
 .text-header {
 	color: #124861;
+}
+
+.customBg-btn.btn {
+	background-color: #124861;
+	color: #e6ebed;
+	border: 0;
+}
+
+.customBg-btn.btn:hover {
+	background-color: #6ec3ea;
+	color: #124861;
+}
+
+.customBg-btn.btn:focus {
+	background-color: #6ec3ea;
+	color: #124861;
+	box-shadow: none;
+}
+
+.customBg-link {
+	background-color: #124861;
+	color: #e6ebed;
+	text-decoration: none;
+	padding: 0.75rem;
+	border: 0;
+	border-radius: 0.25rem;
+}
+
+.customBg-link:hover {
+	background-color: #6ec3ea;
+	color: #124861;
+}
+
+.customBg-link:focus {
+	background-color: #6ec3ea;
+	color: #124861;
+	box-shadow: none;
 }

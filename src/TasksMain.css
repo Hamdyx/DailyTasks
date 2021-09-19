@@ -68,20 +68,3 @@
 	padding: 0.25rem 0.5rem;
 	border-radius: 1rem;
 }
-
-.customBg-btn.btn {
-	background-color: #124861;
-	color: #e6ebed;
-	border: 0;
-}
-
-.customBg-btn.btn:hover {
-	background-color: #6ec3ea;
-	color: #124861;
-}
-
-.customBg-btn.btn:focus {
-	background-color: #6ec3ea;
-	color: #124861;
-	box-shadow: none;
-}
