@@ -15,10 +15,10 @@ exports.checkId = (req, res, next, val) => {
 };
 
 exports.checkBody = (req, res, next) => {
-	if (!req.body.title || !req.body.description) {
+	if (!req.body.title || !req.body.details) {
 		return res.status(400).json({
 			status: 'fail',
-			message: 'Missing name or price',
+			message: 'Missing title or details',
 		});
 	}
 	next();

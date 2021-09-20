@@ -7,16 +7,23 @@ import { TaskCard } from './TaskCard';
 import tasksArt from '../../tasks_art.svg';
 
 import '../../TasksMain.css';
-import { useSelector } from 'react-redux';
-import { selectAllTasks, selectTasksIds } from './tasksSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAllTasks, selectTasksIds, fetchTasks } from './tasksSlice';
 
 export const TasksMain = () => {
 	const [today, setToday] = useState('');
+
+	const dispatch = useDispatch();
 
 	const tasksIds = useSelector(selectTasksIds);
 	let allTasks = useSelector(selectAllTasks);
 
 	useEffect(() => {
+		const fetchData = async () => {
+			let res = await dispatch(fetchTasks());
+			return res;
+		};
+		fetchData();
 		const testDate = new Date().toUTCString().split(' ');
 		setToday(`${testDate[1]} ${testDate[2]} ${testDate[3]}`);
 	}, []);

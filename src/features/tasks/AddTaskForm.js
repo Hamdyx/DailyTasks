@@ -27,16 +27,20 @@ export const AddTaskForm = () => {
 			console.log(`title: ${title}`);
 			console.log(`details: ${details}`);
 			console.log('calling dispatch');
-			dispatch(
-				addNewTask({
-					id: new Date().toISOString(),
-					title,
-					details,
-					additionalNotes,
-					isCompleted: false,
-					progress: 0,
-				})
-			);
+			const addToServer = async () => {
+				await dispatch(
+					addNewTask({
+						id: new Date().toISOString(),
+						title,
+						details,
+						additionalNotes,
+						isCompleted: false,
+						progress: 0,
+					})
+				);
+			};
+			addToServer();
+
 			console.log('done dispatch');
 			setTitle('');
 			setDetails('');

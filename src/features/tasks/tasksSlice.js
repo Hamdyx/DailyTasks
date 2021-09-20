@@ -17,21 +17,35 @@ const initialState = tasksAdapter.getInitialState({
 });
 
 const fakeApi = 'https://jsonplaceholder.typicode.com/todos/';
+const myApi = 'http://127.0.0.1:8000/api/v1/tasks';
 
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
+	const response = await client.get(myApi);
+	return response.data.tasks;
+});
+
+/* export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
 	console.log('fetchTasks Init');
 	const response = await client.get(fakeApi);
 	console.log('fetchTasks done');
 	console.log(response);
 	return response;
-});
+}); */
 
 export const addNewTask = createAsyncThunk('tasks/addNewTask', async (initialTask) => {
+	console.log('addNewTask started');
+	const response = await client.post(myApi, initialTask);
+	console.log('addNewTask done');
+
+	return response.data.task;
+});
+
+/* export const addNewTask = createAsyncThunk('tasks/addNewTask', async (initialTask) => {
 	// const response = { task: initialTask };
 	const response = await client.post(fakeApi, { task: initialTask });
 
 	return response.task;
-});
+}); */
 
 const tasksSlice = createSlice({
 	name: 'tasks',
