@@ -12,6 +12,7 @@ import {
 	ProgressBar,
 	FloatingLabel,
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export const EditTaskForm = ({ match }) => {
 	const { taskId } = match.params;
@@ -157,19 +158,19 @@ export const EditTaskForm = ({ match }) => {
 				</Col>
 			</Row>
 			<Row>
-				<Row>
-					<Col>
-						<ProgressBar now={progress} label={`${progress}%`} animated />
-					</Col>
-				</Row>
+				<Col>
+					<ProgressBar now={progress} label={`${progress}%`} animated />
+				</Col>
+			</Row>
+			<Row>
 				<Col>
 					<Form.Label>mark completed</Form.Label>
 					<Form.Check type="checkbox" onChange={onTaskCheck} checked={isCompleted} />
 				</Col>
 				<Col>
-					<Button onClick={onSaveTaskClicked} className="customBg-btn">
+					<Link to={`/tasks`} onClick={onSaveTaskClicked} className="customBg-link">
 						Save Task
-					</Button>
+					</Link>
 				</Col>
 			</Row>
 		</Container>
