@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 
 const taskRouter = require('./routes/taskRoutes');
+const projectRouter = require('./routes/projectRoutes');
 
 const app = express();
 
@@ -26,5 +27,6 @@ app.use((req, res, next) => {
 
 // Mounting Routers
 app.use('/api/v1/tasks', taskRouter);
+app.use('/api/v1/projects', projectRouter);
 
 module.exports = app;

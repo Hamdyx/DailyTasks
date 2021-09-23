@@ -1,0 +1,22 @@
+[
+    {
+        "id": "1",
+        "title": "Project 1",
+        "details": "read 1 chapter"
+    },
+    {
+        "id": "2",
+        "title": "Project 2 Updated",
+        "details": "Daily-Tasks UI"
+    },
+    {
+        "id": "3",
+        "title": "Project 3",
+        "details": "read 1 chapter"
+    },
+    {
+        "id": "4",
+        "title": "Project 4",
+        "details": "read 1 chapter"
+    }
+]
