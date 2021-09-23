@@ -10,12 +10,12 @@ exports.checkId = (req, res, next, val) => {
 };
 
 exports.checkBody = (req, res, next) => {
-	if (!req.body.title) {
+	/* if (!req.body.title) {
 		return res.status(400).json({
 			status: 'fail',
 			message: 'Missing title',
 		});
-	}
+	} */
 	next();
 };
 

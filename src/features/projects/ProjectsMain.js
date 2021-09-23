@@ -1,6 +1,6 @@
-import React from 'react';
-import { selectProjectIds } from './projectsSlice';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { fetchProjects, selectProjectIds } from './projectsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col, Button, Image } from 'react-bootstrap';
 
 import { AddProjectForm } from './AddProjectForm';
@@ -23,6 +23,17 @@ const ColoredLine = ({ color }) => (
 );
 
 export const ProjectsMain = () => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		const fetchData = async () => {
+			let res = await dispatch(fetchProjects());
+			return res;
+		};
+		fetchData();
+		/* const testDate = new Date().toUTCString().split(' ');
+		setToday(`${testDate[1]} ${testDate[2]} ${testDate[3]}`); */
+	}, []);
+
 	const projectsIds = useSelector(selectProjectIds);
 
 	let content;

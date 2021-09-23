@@ -7,6 +7,8 @@ import {
 
 import { client } from '../../api/client';
 
+const axios = require('axios').default;
+
 const projectsAdapter = createEntityAdapter({});
 
 const initialState = projectsAdapter.getInitialState({
@@ -14,21 +16,30 @@ const initialState = projectsAdapter.getInitialState({
 	error: null,
 });
 
-const fakeApi = 'https://jsonplaceholder.typicode.com/todos/';
+const myApi = 'http://127.0.0.1:8000/api/v1/projects';
 
 export const fetchProjects = createAsyncThunk('projects/fetchProjects', async () => {
 	console.log('fetchProjects started');
-	const response = await client.get(fakeApi);
+	const response = await client.get(myApi);
 	console.log('fetchProjects finished');
 	console.log(response);
-	return response;
+	return response.data.projects;
 });
 
 export const addNewProject = createAsyncThunk(
 	'projects/addNewProject',
-	async (initialProject) => {
-		const response = await client.post(fakeApi, { project: initialProject });
-		return response.project;
+	async (project) => {
+		const response = await client.post(myApi, project);
+		console.log(response);
+		return response.data.project;
+	}
+);
+
+export const projectUpdated = createAsyncThunk(
+	'projects/projectUpdated',
+	async (project) => {
+		const response = await axios.patch(`${myApi}/${project.id}`, project);
+		return response.data.data.project;
 	}
 );
 
@@ -51,14 +62,6 @@ const projectsSlice = createSlice({
 				};
 			},
 		},
-		projectUpdated(state, action) {
-			const { id, title, content } = action.payload;
-			const _project = state.entities[id];
-			if (_project) {
-				_project.title = title;
-				_project.content = content;
-			}
-		},
 	},
 	extraReducers: {
 		[fetchProjects.pending]: (state, aciton) => {
@@ -66,17 +69,28 @@ const projectsSlice = createSlice({
 		},
 		[fetchProjects.fulfilled]: (state, action) => {
 			state.status = 'succeeded';
-			projectsAdapter.updateMany(state, action.payload);
+			projectsAdapter.upsertMany(state, action.payload);
 		},
 		[fetchProjects.rejected]: (state, action) => {
 			state.status = 'failed';
 			state.error = action.error.message;
 		},
 		[addNewProject.fulfilled]: projectsAdapter.addOne,
+		[projectUpdated.pending]: (state, action) => {
+			state.status = 'loading';
+		},
+		[projectUpdated.rejected]: (state, action) => {
+			state.status = 'fail';
+			state.error = action.error.message;
+		},
+		[projectUpdated.fulfilled]: (state, action) => {
+			state.status = 'succeeded';
+			projectsAdapter.upsertOne(state, action.payload);
+		},
 	},
 });
 
-export const { projectAdded, projectUpdated } = projectsSlice.actions;
+export const { projectAdded } = projectsSlice.actions;
 
 export default projectsSlice.reducer;
 

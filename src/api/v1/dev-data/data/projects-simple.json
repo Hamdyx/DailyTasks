@@ -1,22 +1,23 @@
 [
     {
-        "id": "1",
+        "id": "2021-09-23T21:50:04.848Z",
         "title": "Project 1",
-        "details": "read 1 chapter"
+        "startTime": "23:50",
+        "endTime": "17:50",
+        "isCompleted": false
     },
     {
-        "id": "2",
+        "id": "2021-09-23T21:50:33.981Z",
         "title": "Project 2 Updated",
-        "details": "Daily-Tasks UI"
+        "startTime": "13:30",
+        "endTime": "15:30",
+        "isCompleted": false
     },
     {
-        "id": "3",
+        "id": "2021-09-23T21:50:43.849Z",
         "title": "Project 3",
-        "details": "read 1 chapter"
-    },
-    {
-        "id": "4",
-        "title": "Project 4",
-        "details": "read 1 chapter"
+        "startTime": "12:50",
+        "endTime": "16:50",
+        "isCompleted": false
     }
 ]
