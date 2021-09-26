@@ -10,13 +10,28 @@ import { Link } from 'react-router-dom';
 
 export const ProjectCard = ({ projectId }) => {
 	const project = useSelector((state) => selectProjectById(state, projectId));
+	const checklist = project.checklist;
+
+	const getCheckList = () => {
+		if (checklist.length === 0) {
+			return;
+		} else {
+			return (
+				<ul className="text-left">
+					{checklist.map((el) => (
+						<li>{el.title}</li>
+					))}
+				</ul>
+			);
+		}
+	};
 
 	let content;
 	if (project) {
 		content = (
 			<Container className="category-card">
 				<Row>
-					<Col md={9}>
+					<Col md={9} className="text-left">
 						<p>{project.title}</p>
 					</Col>
 					<Col className="task-edit-icon">
@@ -31,6 +46,9 @@ export const ProjectCard = ({ projectId }) => {
 							{project.startTime} - {project.endTime}
 						</p>
 					</Col>
+				</Row>
+				<Row>
+					<Col>{getCheckList()}</Col>
 				</Row>
 			</Container>
 		);

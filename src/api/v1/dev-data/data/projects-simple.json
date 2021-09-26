@@ -1,16 +1,48 @@
 [
     {
         "id": "2021-09-23T21:50:04.848Z",
-        "title": "Project 1",
-        "startTime": "23:50",
-        "endTime": "17:50",
+        "title": "Daily-Tasks",
+        "startTime": "12:00",
+        "endTime": "19:00",
+        "checklist": [
+            {
+                "title": "Build Layout",
+                "startDate": "2021-09-20",
+                "dueDate": "2021-09-27",
+                "isCompleted": false,
+                "completionDate": ""
+            },
+            {
+                "title": "Develop API",
+                "startDate": "2021-09-27",
+                "dueDate": "2021-10-04",
+                "isCompleted": false,
+                "completionDate": ""
+            }
+        ],
         "isCompleted": false
     },
     {
         "id": "2021-09-23T21:50:33.981Z",
-        "title": "Project 2 Updated",
-        "startTime": "13:30",
-        "endTime": "15:30",
+        "title": "Budgety",
+        "startTime": "12:30",
+        "endTime": "18:30",
+        "checklist": [
+            {
+                "title": "Update UI",
+                "startDate": "2021-09-27",
+                "dueDate": "2021-09-29",
+                "isCompleted": false,
+                "completionDate": ""
+            },
+            {
+                "title": "Build API",
+                "startDate": "2021-09-30",
+                "dueDate": "2021-10-07",
+                "isCompleted": false,
+                "completionDate": ""
+            }
+        ],
         "isCompleted": false
     },
     {
@@ -18,6 +50,7 @@
         "title": "Project 3",
         "startTime": "12:50",
         "endTime": "16:50",
+        "checklist": [],
         "isCompleted": false
     }
 ]
