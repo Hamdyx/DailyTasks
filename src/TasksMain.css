@@ -68,3 +68,13 @@
 	padding: 0.25rem 0.5rem;
 	border-radius: 1rem;
 }
+
+.dueTime-div {
+	display: inline-block;
+	font-size: 0.85rem;
+	/* background-color: #1cc79cbb;
+	padding: 0.25rem; */
+}
+.dueTime-div > svg {
+	margin: 0 0.25rem;
+}

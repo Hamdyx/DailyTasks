@@ -5,6 +5,7 @@ import { selectTaskById, taskUpdated } from './tasksSlice';
 import { Container, Row, Col, Form, ProgressBar } from 'react-bootstrap';
 
 import { FaEdit } from 'react-icons/fa';
+import { RiTimerLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
 export const TaskCard = ({ taskId }) => {
@@ -23,12 +24,28 @@ export const TaskCard = ({ taskId }) => {
 		dispatch(taskUpdated({ id, title, details, additionalNotes, isCompleted, progress }));
 	};
 
+	const formatDueDate = (date) => {
+		const dateObj = new Date(date);
+		const dateString = dateObj.toUTCString().split(' ');
+		const timeString = dateObj.toLocaleTimeString().split(':');
+		let datePart;
+
+		if (dateObj.toDateString() === new Date().toDateString()) {
+			datePart = 'Today';
+		} else {
+			datePart = `${dateString[1]} ${dateString[2]}`;
+		}
+
+		const timePart = `${timeString[0]}:${timeString[1]} ${timeString[2].split(' ')[1]}`;
+		return `${datePart} ${timePart}`;
+	};
+
 	let content;
 	if (task) {
 		content = (
 			<React.Fragment>
 				<Row>
-					<Col>
+					<Col className="text-left">
 						<p>{task.title}</p>
 					</Col>
 					<Col className="task-edit-icon">
@@ -41,10 +58,18 @@ export const TaskCard = ({ taskId }) => {
 				<p>{task.details}</p>
 				<p>{task.additionalNotes}</p>
 				<Form.Check type="checkbox" onChange={onTaskCheck} checked={isCompleted} />
+				<Row>
+					<Col className="text-right">
+						<div className="dueTime-div">
+							<RiTimerLine />
+							{formatDueDate(task.dueOn)}
+						</div>
+					</Col>
+				</Row>
 			</React.Fragment>
 		);
 	} else {
 		content = <div>Loading</div>;
 	}
-	return <Container className="task-card">{content}</Container>;
+	return <Container className="customBg-card">{content}</Container>;
 };

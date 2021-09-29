@@ -8,6 +8,8 @@ import { Form, Container, Row, Col, Button, Modal, FloatingLabel } from 'react-b
 export const AddTaskForm = () => {
 	const [title, setTitle] = useState('');
 	const [details, setDetails] = useState('');
+	const [startOn, setStartOn] = useState('');
+	const [dueOn, setDueOn] = useState('');
 	const [additionalNotes, setAdditionalNotes] = useState('');
 	const [addRequestStatus, setAddRequestStatus] = useState('');
 
@@ -19,6 +21,8 @@ export const AddTaskForm = () => {
 	const dispatch = useDispatch();
 
 	const onTitleChanged = (e) => setTitle(e.target.value);
+	const onStartOnChanged = (e) => setStartOn(e.target.value);
+	const onDueOnChanged = (e) => setDueOn(e.target.value);
 
 	const canSave = [title].every(Boolean) && addRequestStatus === 'idle';
 
@@ -33,6 +37,8 @@ export const AddTaskForm = () => {
 						id: new Date().toISOString(),
 						title,
 						details,
+						startOn,
+						dueOn,
 						additionalNotes,
 						isCompleted: false,
 						progress: 0,
@@ -44,6 +50,8 @@ export const AddTaskForm = () => {
 			console.log('done dispatch');
 			setTitle('');
 			setDetails('');
+			setStartOn('');
+			setDueOn('');
 			handleModalClose();
 		}
 	};
@@ -66,22 +74,13 @@ export const AddTaskForm = () => {
 					<Form>
 						<Row>
 							<Col>
-								{/* <Form.Group>
-									<Form.Label htmlFor="taskTitle">Task Title: </Form.Label>
-									<Form.Control
-										type="text"
-										placeholder="task text"
-										value={title}
-										onChange={onTitleChanged}
-									/>
-								</Form.Group> */}
 								<FloatingLabel
 									controlId="floatingInput"
-									label="Task name"
+									label="Task Name"
 									className="mb-3"
 								>
 									<Form.Control
-										placeholder="task name"
+										placeholder="Task Name"
 										value={title}
 										onChange={onTitleChanged}
 									/>
@@ -90,15 +89,6 @@ export const AddTaskForm = () => {
 						</Row>
 						<Row>
 							<Col>
-								{/* <Form.Group>
-									<Form.Label htmlFor="taskDetails">Task Details: </Form.Label>
-									<Form.Control
-										type="text"
-										placeholder="task details"
-										value={details}
-										onChange={(e) => setDetails(e.target.value)}
-									/>
-								</Form.Group> */}
 								<FloatingLabel
 									controlId="floatingInput"
 									label="Description"
@@ -113,21 +103,30 @@ export const AddTaskForm = () => {
 							</Col>
 						</Row>
 						<Row>
-							<Col>
-								{/* <Form.Group>
-									<Form.Label htmlFor="taskDetails">Additional Notes: </Form.Label>
+							<Col md={6}>
+								<FloatingLabel label="Start-On" className="mb-3">
 									<Form.Control
-										type="text"
-										placeholder="Additional Notes"
-										value={additionalNotes}
-										onChange={(e) => setAdditionalNotes(e.target.value)}
+										type="datetime-local"
+										placeholder="Start-On"
+										value={startOn}
+										onChange={onStartOnChanged}
 									/>
-								</Form.Group> */}
-								<FloatingLabel
-									controlId="floatingInput"
-									label="Comments"
-									className="mb-3"
-								>
+								</FloatingLabel>
+							</Col>
+							<Col md={6}>
+								<FloatingLabel label="Due-On" className="mb-3">
+									<Form.Control
+										type="datetime-local"
+										placeholder="Start-On"
+										value={dueOn}
+										onChange={onDueOnChanged}
+									/>
+								</FloatingLabel>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<FloatingLabel controlId="floatingInput" label="Notes" className="mb-3">
 									<Form.Control
 										placeholder="Add extra notes or comments to this task..."
 										value={additionalNotes}

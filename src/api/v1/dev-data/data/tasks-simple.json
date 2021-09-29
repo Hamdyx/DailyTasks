@@ -5,20 +5,36 @@
         "details": "read 1 chapter",
         "additionalNotes": "",
         "isCompleted": false,
-        "progress": 0
+        "progress": 0,
+        "startOn": "2021-09-29T10:07",
+        "dueOn": "2021-09-29T13:00"
     },
     {
         "id": "2021-09-20T14:05:01.052Z",
         "title": "study",
         "details": "study redux",
-        "additionalNotes": "",
+        "additionalNotes": "finished dispatch and selectors",
         "isCompleted": false,
-        "progress": 0
+        "progress": 50,
+        "startOn": "2021-09-01T15:00",
+        "dueOn": "2021-10-31T15:00"
     },
     {
         "id": "2021-09-20T14:14:13.715Z",
         "title": "workout",
         "details": "do morning exercises",
+        "additionalNotes": "",
+        "isCompleted": false,
+        "progress": 0,
+        "startOn": "2021-09-29T00:00",
+        "dueOn": "2021-09-29T23:59"
+    },
+    {
+        "id": "2021-09-29T15:12:49.275Z",
+        "title": "learn",
+        "details": "read about trading types, strategies and patterns",
+        "startOn": "2021-10-01T12:00",
+        "dueOn": "2021-10-31T17:00",
         "additionalNotes": "",
         "isCompleted": false,
         "progress": 0

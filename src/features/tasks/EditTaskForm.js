@@ -34,18 +34,22 @@ export const EditTaskForm = ({ match }) => {
 	const [title, setTitle] = useState(task.title);
 
 	const [details, setDetails] = useState(task.details);
+	const [startOn, setStartOn] = useState(task.startOn);
+	const [dueOn, setDueOn] = useState(task.dueOn);
 	const [additionalNotes, setAdditionalNotes] = useState(task.additionalNotes);
 	const [isCompleted, setIsCompleted] = useState(task.isCompleted);
-
-	const [target, setTarget] = useState(0);
-	const [achieved, setAchieved] = useState(0);
+	const [target, setTarget] = useState(100);
+	const [achieved, setAchieved] = useState(task.progress);
 	const [progress, setProgress] = useState(task.progress);
 
 	const dispatch = useDispatch();
 
 	const onTitleChanged = (e) => setTitle(e.target.value);
 	const onDetailsChanged = (e) => setDetails(e.target.value);
+	const onStartOnChanged = (e) => setStartOn(e.target.value);
+	const onDueOnChanged = (e) => setDueOn(e.target.value);
 	const onAdditionalNotesChanged = (e) => setAdditionalNotes(e.target.value);
+
 	const onTaskCheck = (ev) => {
 		console.log(`${ev.target.checked}`);
 		// isCompleted = ev.target.checked;
@@ -79,13 +83,14 @@ export const EditTaskForm = ({ match }) => {
 		console.log(`details: ${details}`);
 		console.log(`additional notes: ${additionalNotes}`);
 		console.log(`progress: ${progress}`);
-		// let { isCompleted } = task;
 		if (title && details) {
 			dispatch(
 				taskUpdated({
 					id: taskId,
 					title,
 					details,
+					startOn,
+					dueOn,
 					additionalNotes,
 					isCompleted,
 					progress,
@@ -117,6 +122,28 @@ export const EditTaskForm = ({ match }) => {
 							placeholder="Add more detail to this task..."
 							value={details}
 							onChange={onDetailsChanged}
+						/>
+					</FloatingLabel>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<FloatingLabel label="Start-On" className="mb-3">
+						<Form.Control
+							type="datetime-local"
+							placeholder="Start-On"
+							value={startOn}
+							onChange={onStartOnChanged}
+						/>
+					</FloatingLabel>
+				</Col>
+				<Col>
+					<FloatingLabel label="Due-On" className="mb-3">
+						<Form.Control
+							type="datetime-local"
+							placeholder="Start-On"
+							value={dueOn}
+							onChange={onDueOnChanged}
 						/>
 					</FloatingLabel>
 				</Col>
