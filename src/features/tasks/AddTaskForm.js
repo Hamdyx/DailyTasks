@@ -10,6 +10,7 @@ export const AddTaskForm = () => {
 	const [details, setDetails] = useState('');
 	const [startOn, setStartOn] = useState('');
 	const [dueOn, setDueOn] = useState('');
+	const [category, setCategory] = useState('personal');
 	const [additionalNotes, setAdditionalNotes] = useState('');
 	const [addRequestStatus, setAddRequestStatus] = useState('');
 
@@ -39,6 +40,7 @@ export const AddTaskForm = () => {
 						details,
 						startOn,
 						dueOn,
+						category,
 						additionalNotes,
 						isCompleted: false,
 						progress: 0,

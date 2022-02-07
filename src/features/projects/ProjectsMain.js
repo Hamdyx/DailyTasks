@@ -6,10 +6,6 @@ import { Container, Row, Col, Button, Image } from 'react-bootstrap';
 import { AddProjectForm } from './AddProjectForm';
 import { ProjectCard } from './ProjectCard';
 
-import projectArt from '../../projects-art.svg';
-import webDesign from '../../web-design-art.png';
-import apiDesign from '../../api-design-art.svg';
-import mobileDesign from '../../mobile-app-art.svg';
 import './ProjectsMain.css';
 
 const ColoredLine = ({ color }) => (
@@ -24,6 +20,12 @@ const ColoredLine = ({ color }) => (
 
 export const ProjectsMain = () => {
 	const dispatch = useDispatch();
+
+	const projectImg = 'images/projects-art.svg';
+	const webImg = 'images/web-design-art.png';
+	const apiImg = 'images/api-design-art.svg';
+	const mobileImg = 'images/mobile-app-art.svg';
+
 	useEffect(() => {
 		const fetchData = async () => {
 			let res = await dispatch(fetchProjects());
@@ -39,7 +41,7 @@ export const ProjectsMain = () => {
 	let content;
 
 	if (projectsIds) {
-		content = projectsIds.map((id) => <ProjectCard key={id} projectId={id} />);
+		content = projectsIds.map((id, i) => <ProjectCard key={i} projectId={id} />);
 	}
 
 	return (
@@ -49,18 +51,18 @@ export const ProjectsMain = () => {
 					<AddProjectForm />
 				</Col>
 				<Col>
-					<Image src={projectArt} alt="project art" width={350} height={250} />
+					<Image src={projectImg} alt="project art" width={350} height={250} />
 				</Col>
 			</Row>
 			<Row className="categories-row">
 				<Col>
-					<CategoryCard imgSrc={webDesign} />
+					<CategoryCard imgSrc={webImg} />
 				</Col>
 				<Col>
-					<CategoryCard imgSrc={apiDesign} />
+					<CategoryCard imgSrc={apiImg} />
 				</Col>
 				<Col>
-					<CategoryCard imgSrc={mobileDesign} />
+					<CategoryCard imgSrc={mobileImg} />
 				</Col>
 			</Row>
 			<Row>

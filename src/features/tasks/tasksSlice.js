@@ -5,7 +5,6 @@ import {
 	createSelector,
 	createEntityAdapter,
 } from '@reduxjs/toolkit';
-import { client } from '../../api/client';
 
 const axios = require('axios').default;
 
@@ -21,19 +20,17 @@ const initialState = tasksAdapter.getInitialState({
 const myApi = 'http://127.0.0.1:8000/api/v1/tasks';
 
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
-	const response = await client.get(myApi);
-	return response.data.tasks;
+	const response = await axios.get(myApi);
+	return response.data.data.tasks;
 });
 
 export const addNewTask = createAsyncThunk('tasks/addNewTask', async (initialTask) => {
-	const response = await client.post(myApi, initialTask);
-
-	return response.data.task;
+	const response = await axios.post(`${myApi}`, initialTask);
+	return response.data.data.task;
 });
 
 export const taskUpdated = createAsyncThunk('tasks/taskUpdated', async (initialTask) => {
 	const response = await axios.patch(`${myApi}/${initialTask.id}`, initialTask);
-
 	return response.data.data.task;
 });
 

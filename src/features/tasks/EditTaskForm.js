@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { taskUpdated, selectTaskById } from './tasksSlice';
+import { IoReturnUpBack } from 'react-icons/io5';
 
 import {
 	Col,
@@ -12,7 +14,6 @@ import {
 	ProgressBar,
 	FloatingLabel,
 } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 export const EditTaskForm = ({ match }) => {
 	const { taskId } = match.params;
@@ -36,6 +37,7 @@ export const EditTaskForm = ({ match }) => {
 	const [details, setDetails] = useState(task.details);
 	const [startOn, setStartOn] = useState(task.startOn);
 	const [dueOn, setDueOn] = useState(task.dueOn);
+	const [category, setCategory] = useState(task.category);
 	const [additionalNotes, setAdditionalNotes] = useState(task.additionalNotes);
 	const [isCompleted, setIsCompleted] = useState(task.isCompleted);
 	const [target, setTarget] = useState(100);
@@ -70,6 +72,10 @@ export const EditTaskForm = ({ match }) => {
 		setAchieved(ev.target.value);
 		// onProgressUpdated();
 	};
+	const onCategoryChanged = (ev) => {
+		setCategory(ev.target.value);
+		// onProgressUpdated();
+	};
 	const onProgressUpdated = () => {
 		console.log(`target: ${target}`);
 		console.log(`achieved: ${achieved}`);
@@ -91,6 +97,7 @@ export const EditTaskForm = ({ match }) => {
 					details,
 					startOn,
 					dueOn,
+					category,
 					additionalNotes,
 					isCompleted,
 					progress,
@@ -102,6 +109,11 @@ export const EditTaskForm = ({ match }) => {
 	return (
 		<Container>
 			<Row>
+				<Col className="editTask-returnIcon">
+					<Link to="/tasks">
+						<IoReturnUpBack />
+					</Link>
+				</Col>
 				<Col>
 					<h4>Edit Task</h4>
 				</Col>
@@ -113,6 +125,7 @@ export const EditTaskForm = ({ match }) => {
 							placeholder="Task Title"
 							value={title}
 							onChange={onTitleChanged}
+							className="task-input"
 						/>
 					</FloatingLabel>
 				</Col>
@@ -122,6 +135,7 @@ export const EditTaskForm = ({ match }) => {
 							placeholder="Add more detail to this task..."
 							value={details}
 							onChange={onDetailsChanged}
+							className="task-input"
 						/>
 					</FloatingLabel>
 				</Col>
@@ -134,6 +148,7 @@ export const EditTaskForm = ({ match }) => {
 							placeholder="Start-On"
 							value={startOn}
 							onChange={onStartOnChanged}
+							className="task-input"
 						/>
 					</FloatingLabel>
 				</Col>
@@ -144,6 +159,7 @@ export const EditTaskForm = ({ match }) => {
 							placeholder="Start-On"
 							value={dueOn}
 							onChange={onDueOnChanged}
+							className="task-input"
 						/>
 					</FloatingLabel>
 				</Col>
@@ -155,6 +171,7 @@ export const EditTaskForm = ({ match }) => {
 							placeholder="Add extra notes or comments to this task..."
 							value={additionalNotes}
 							onChange={onAdditionalNotesChanged}
+							className="task-input"
 						/>
 					</FloatingLabel>
 				</Col>
@@ -166,6 +183,7 @@ export const EditTaskForm = ({ match }) => {
 							placeholder="Task Goal"
 							value={target}
 							onChange={onTargetChanged}
+							className="task-input"
 						/>
 					</FloatingLabel>
 				</Col>
@@ -175,6 +193,7 @@ export const EditTaskForm = ({ match }) => {
 							placeholder="Task Goal"
 							value={achieved}
 							onChange={onAchievedChanged}
+							className="task-input"
 						/>
 					</FloatingLabel>
 				</Col>
@@ -187,6 +206,18 @@ export const EditTaskForm = ({ match }) => {
 			<Row>
 				<Col>
 					<ProgressBar now={progress} label={`${progress}%`} animated />
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<FloatingLabel label="Category" className="mb-3">
+						<Form.Control
+							placeholder="Task Category"
+							value={category}
+							onChange={onCategoryChanged}
+							className="task-input"
+						/>
+					</FloatingLabel>
 				</Col>
 			</Row>
 			<Row>

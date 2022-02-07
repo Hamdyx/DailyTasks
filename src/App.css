@@ -111,12 +111,42 @@
 	box-shadow: none;
 }
 
-.customBg-card {
+/* .customBg-card {
 	background: linear-gradient(
 		325deg,
 		rgba(110, 195, 234, 0.75) 0%,
 		rgba(18, 72, 97, 0.75) 75%
 	);
+	color: #ffffff;
+	box-shadow: 0 0 0.5rem 0.0625rem rgb(52 58 64);
+	border-radius: 0.75rem;
+	padding: 1rem;
+	margin: 1rem 0;
+} */
+.customBg-card {
+	/* 	background-image: linear-gradient(
+		171.8deg,
+		rgba(5, 111, 146, 1) 13.5%,
+		rgba(6, 57, 84, 1) 78.6%
+	); */
+
+	background-image: linear-gradient(
+		65.9deg,
+		#6ec3ea 5.5%,
+		#124861 54.2%,
+		#6ec3ea 55.2%,
+		#124861 98.4%
+	);
+	/* background-image: linear-gradient(
+		65.9deg,
+		rgba(85, 228, 224, 1) 5.5%,
+		rgba(75, 68, 224, 0.74) 54.2%,
+		rgba(64, 198, 238, 1) 55.2%,
+		rgba(177, 36, 224, 1) 98.4%
+	); */
+
+	/* background-image: linear-gradient(135deg, #ffcf71 10%, #2376dd 100%); */
+
 	color: #ffffff;
 	box-shadow: 0 0 0.5rem 0.0625rem rgb(52 58 64);
 	border-radius: 0.75rem;

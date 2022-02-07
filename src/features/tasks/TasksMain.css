@@ -1,0 +1,257 @@
+.task-card {
+	text-align: left;
+}
+
+.add-task-form {
+	font-size: 1.25rem;
+	font-weight: 400;
+	text-align: left;
+	margin-top: 5rem;
+}
+
+.tasks-sections.row {
+	margin-top: 1rem;
+}
+
+.tasks-details {
+	text-align: left;
+}
+
+.tasks-details > .col {
+	border-radius: 0.5rem;
+	margin: 0.5rem;
+	padding: 0.75rem 1rem 0.25rem 1rem;
+}
+
+.total-tasks {
+	background-color: #e1af197a;
+	border: 0.125rem solid #e1af19;
+}
+
+.tasks-productivity {
+	background-color: #b2c56d80;
+	border: 0.125rem solid #b2c56d;
+}
+
+.tasks-dueDate {
+	background-color: #68c78480;
+	border: 0.125rem solid #68c785;
+}
+
+.tasks-attach {
+	background-color: #1cc79c81;
+	border: 0.125rem solid #1cc79d;
+}
+
+.task-edit-icon {
+	text-align: right;
+}
+.editTask-returnIcon {
+	text-align: left;
+	font-size: 1.5rem;
+}
+
+.editTask-returnIcon > a {
+	color: #124861;
+}
+
+.task-edit-icon > a {
+	color: #6ec3ea;
+	/* color: #124861; */
+}
+
+.task-edit-icon > a:hover {
+	color: #124861;
+}
+
+.task-edit-icon > .btn {
+	background: none;
+	color: #000;
+	border: 0;
+	margin-top: -0.5rem;
+}
+
+.tasks-status-badge {
+	background-color: #124861;
+	color: #ffffff;
+	padding: 0.25rem 0.5rem;
+	border-radius: 1rem;
+}
+
+.dueTime-div {
+	display: inline-block;
+	font-size: 0.85rem;
+	/* background-color: #1cc79cbb;
+	padding: 0.25rem; */
+}
+.dueTime-div > svg {
+	margin: 0 0.25rem;
+}
+
+.personal-icon,
+.work-icon,
+.healthcare-icon,
+.read-icon,
+.games-icon {
+	position: relative;
+	top: 0.1rem;
+	right: 0.25rem;
+	height: 15px;
+	width: 15px;
+	background: none;
+	border-radius: 50%;
+	display: inline-block;
+}
+.personal-icon {
+	border: 3px solid #c58b1e;
+}
+.work-icon {
+	border: 3px solid #8a0b0b;
+}
+.healthcare-icon {
+	border: 3px solid #0f8a0b;
+}
+.read-icon {
+	border: 3px solid #0b8a8a;
+}
+.games-icon {
+	border: 3px solid #2d0b8a;
+}
+
+.btn.category-btn {
+	background: none;
+	border: none;
+	color: #124861;
+	text-transform: capitalize;
+}
+
+.btn.category-btn:hover {
+	background: #1248613f;
+	border: none;
+	color: #124861;
+}
+.btn.category-btn.active {
+	background: none;
+	border: none;
+	color: #124861;
+	box-shadow: none;
+	border-bottom: 2px solid #124861;
+}
+.btn.category-btn.active:focus {
+	background: #12486171;
+	border: none;
+	color: #325a6d;
+	border-bottom: 2px solid #124861;
+	box-shadow: none;
+}
+.btn.category-btn:focus {
+	background: none;
+	border: none;
+	color: #446472;
+	box-shadow: none;
+	border-bottom: 2px solid #124861;
+}
+
+.task-input.form-control {
+	background: linear-gradient(
+		320deg,
+		rgba(255, 255, 255, 0) 25.24%,
+		rgba(255, 255, 255, 0.5) 52.21%,
+		#ffffff 80.33%
+	);
+	box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.25);
+}
+.task-input.form-control:focus {
+	animation: gradientCircle 1s infinite linear;
+}
+
+@keyframes gradientCircle {
+	0% {
+		background: linear-gradient(
+			0,
+			rgba(255, 255, 255, 0) 25.24%,
+			rgba(255, 255, 255, 0.5) 52.21%,
+			#ffffff 80.33%
+		);
+	}
+	10% {
+		background: linear-gradient(
+			30,
+			rgba(255, 255, 255, 0) 25.24%,
+			rgba(255, 255, 255, 0.5) 52.21%,
+			#ffffff 80.33%
+		);
+	}
+	20% {
+		background: linear-gradient(
+			60,
+			rgba(255, 255, 255, 0) 25.24%,
+			rgba(255, 255, 255, 0.5) 52.21%,
+			#ffffff 80.33%
+		);
+	}
+	30% {
+		background: linear-gradient(
+			90,
+			rgba(255, 255, 255, 0) 25.24%,
+			rgba(255, 255, 255, 0.5) 52.21%,
+			#ffffff 80.33%
+		);
+	}
+	40% {
+		background: linear-gradient(
+			120,
+			rgba(255, 255, 255, 0) 25.24%,
+			rgba(255, 255, 255, 0.5) 52.21%,
+			#ffffff 80.33%
+		);
+	}
+	50% {
+		background: linear-gradient(
+			150,
+			rgba(255, 255, 255, 0) 25.24%,
+			rgba(255, 255, 255, 0.5) 52.21%,
+			#ffffff 80.33%
+		);
+	}
+	60% {
+		background: linear-gradient(
+			180,
+			rgba(255, 255, 255, 0) 25.24%,
+			rgba(255, 255, 255, 0.5) 52.21%,
+			#ffffff 80.33%
+		);
+	}
+	70% {
+		background: linear-gradient(
+			210,
+			rgba(255, 255, 255, 0) 25.24%,
+			rgba(255, 255, 255, 0.5) 52.21%,
+			#ffffff 80.33%
+		);
+	}
+	80% {
+		background: linear-gradient(
+			240,
+			rgba(255, 255, 255, 0) 25.24%,
+			rgba(255, 255, 255, 0.5) 52.21%,
+			#ffffff 80.33%
+		);
+	}
+	90% {
+		background: linear-gradient(
+			270,
+			rgba(255, 255, 255, 0) 25.24%,
+			rgba(255, 255, 255, 0.5) 52.21%,
+			#ffffff 80.33%
+		);
+	}
+	100% {
+		background: linear-gradient(
+			300,
+			rgba(255, 255, 255, 0) 25.24%,
+			rgba(255, 255, 255, 0.5) 52.21%,
+			#ffffff 80.33%
+		);
+	}
+}

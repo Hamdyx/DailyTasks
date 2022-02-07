@@ -8,7 +8,7 @@ import { selectAllTasks, selectTasksIds } from './features/tasks/tasksSlice';
 import { TaskCard } from './features/tasks/TaskCard';
 
 import './Dashboard.css';
-import avatarPic from './avatar.png';
+const avatarImg = 'images/avatar.png';
 
 export const Dashboard = () => {
 	const taskStatus = useSelector((state) => state.tasks.status);
@@ -195,7 +195,7 @@ const DashboardProfile = () => {
 		<Container className="dashboard-profile">
 			<Row>
 				<Col sm={{ span: 3 }}>
-					<img src={avatarPic} alt="logo" className="avatar-pic" />
+					<img src={avatarImg} alt="logo" className="avatar-pic" />
 				</Col>
 				<Col className="profile-info">
 					<p>Cryptojoint</p>

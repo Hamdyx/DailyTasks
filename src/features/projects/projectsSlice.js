@@ -5,8 +5,6 @@ import {
 	createEntityAdapter,
 } from '@reduxjs/toolkit';
 
-import { client } from '../../api/client';
-
 const axios = require('axios').default;
 
 const projectsAdapter = createEntityAdapter({});
@@ -20,18 +18,20 @@ const myApi = 'http://127.0.0.1:8000/api/v1/projects';
 
 export const fetchProjects = createAsyncThunk('projects/fetchProjects', async () => {
 	console.log('fetchProjects started');
-	const response = await client.get(myApi);
+	// const response = await client.get(myApi);
+	const response = await axios.get(myApi);
 	console.log('fetchProjects finished');
 	console.log(response);
-	return response.data.projects;
+	return response.data.data.projects;
 });
 
 export const addNewProject = createAsyncThunk(
 	'projects/addNewProject',
 	async (project) => {
-		const response = await client.post(myApi, project);
+		// const response = await client.post(myApi, project);
+		const response = await axios.post(myApi, project);
 		console.log(response);
-		return response.data.project;
+		return response.data.data.project;
 	}
 );
 

@@ -114,6 +114,9 @@ dist
 /.pnp
 .pnp.js
 
+myNotes.txt
+
+
 # testing
 /coverage
 
