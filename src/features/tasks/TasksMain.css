@@ -56,12 +56,13 @@
 }
 
 .task-edit-icon > a {
-	color: #6ec3ea;
-	/* color: #124861; */
+	/* color: #6ec3ea; */
+	color: #124861;
 }
 
 .task-edit-icon > a:hover {
-	color: #124861;
+	color: #297aa0;
+	/* color: #124861; */
 }
 
 .task-edit-icon > .btn {
@@ -69,6 +70,59 @@
 	color: #000;
 	border: 0;
 	margin-top: -0.5rem;
+}
+
+.deleteTask-btn.btn {
+	background: none;
+	color: #ad0d0d;
+	padding: 0;
+	border: 0;
+	margin: 0 0 0.25rem 0.75rem;
+}
+
+.deleteTask-btn.btn:focus {
+	background: none;
+	color: #ad0d0d;
+	box-shadow: none;
+}
+
+.deleteTask-btn.btn:hover {
+	background: none;
+	color: #b96e6e;
+	border: 0;
+	/* margin-top: -0.5rem; */
+}
+
+.modal-footer > .deleteTask-btn.btn {
+	background: #ad0d0d49;
+	color: #bd2929;
+	padding: 0.4rem 0.8rem;
+	border: 1px solid #bd2929;
+	margin: 0 0 0.25rem 0.75rem;
+}
+
+.modal-footer > .customSecondary-btn {
+	background: #979797;
+	color: #ffffff;
+	padding: 0.4rem 0.8rem;
+	border: 1px solid #000000;
+	margin: 0 0 0.25rem 0.75rem;
+}
+
+.modal-footer > .customSecondary-btn:hover {
+	background: #686868;
+	color: #ffffff;
+	padding: 0.4rem 0.8rem;
+	border: 1px solid #000000;
+	margin: 0 0 0.25rem 0.75rem;
+}
+
+.modal-footer > .deleteTask-btn.btn:hover {
+	background: #ad0d0d;
+	color: #eee4e4;
+	padding: 0.4rem 0.8rem;
+	border: 1px solid #bd2929;
+	margin: 0 0 0.25rem 0.75rem;
 }
 
 .tasks-status-badge {

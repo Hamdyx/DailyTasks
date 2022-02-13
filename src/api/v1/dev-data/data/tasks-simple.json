@@ -11,17 +11,6 @@
         "category": "read"
     },
     {
-        "id": "2021-09-20T14:05:01.052Z",
-        "title": "study",
-        "details": "study redux",
-        "additionalNotes": "finished dispatch and selectors",
-        "isCompleted": false,
-        "progress": 50,
-        "startOn": "2021-10-05T15:00",
-        "dueOn": "2021-10-05T15:00",
-        "category": "work"
-    },
-    {
         "id": "2021-09-20T14:14:13.715Z",
         "title": "workout",
         "details": "do morning exercises",
@@ -53,16 +42,5 @@
         "isCompleted": false,
         "progress": 0,
         "category": "work"
-    },
-    {
-        "id": "2021-12-26T23:17:29.130Z",
-        "title": "testCategory1",
-        "details": "testCategory1 details",
-        "startOn": "2021-12-27T00:00",
-        "dueOn": "2021-12-28T00:00",
-        "category": "personal",
-        "additionalNotes": "",
-        "isCompleted": false,
-        "progress": 0
     }
 ]

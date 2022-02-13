@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Image, Form, FloatingLabel, Button } from 'react-bootstrap';
+import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 
 import { AddTaskForm } from './AddTaskForm';
 import { TaskCard } from './TaskCard';
@@ -35,9 +35,6 @@ export const TasksMain = () => {
 		setToday(`${testDate[1]} ${testDate[2]} ${testDate[3]}`);
 		document.querySelectorAll('.category-btn').forEach((item) => {
 			item.addEventListener('click', (ev) => {
-				console.log(ev);
-				// ev.currentTarget.classList.add('active');
-
 				setCategory(ev.currentTarget.value);
 			});
 		});
@@ -68,18 +65,12 @@ export const TasksMain = () => {
 		setCategory(ev.target.value);
 	};
 
-	/* const filteredTasks = allTasks.filter(
-		(task) => getFormatedDate(task.startOn) === getFormatedDate(task.startOn)
-	); */
 	// change the date to inputDate
 	const filteredTasks = allTasks.filter(
 		(task) =>
 			getFormatedDate(task.startOn) === getFormatedDate(task.startOn) &&
 			task.category === category
 	);
-	/* 	const filteredTasks = allTasks.filter(
-		(task) => getFormatedDate(task.startOn) === new Date().toLocaleDateString()
-	); */
 
 	const handleInitialDailyTasks = () => {
 		if (tasksStatus === 'idle') {
@@ -157,10 +148,6 @@ export const TasksMain = () => {
 					<span className="tasks-status-badge">{inProgressContent.length}</span>
 					{inProgressContent}
 				</Col>
-				{/* <Col>
-					In review
-					{inReviewContent}
-				</Col> */}
 				<Col>
 					Finished <span className="tasks-status-badge">{finishedContent.length}</span>
 					{finishedContent}

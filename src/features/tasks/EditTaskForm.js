@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import CustomFloatingLabel from '../../components/inputs/CustomFloatingLabel';
 
 import { taskUpdated, selectTaskById } from './tasksSlice';
 import { IoReturnUpBack } from 'react-icons/io5';
@@ -106,6 +107,18 @@ export const EditTaskForm = ({ match }) => {
 		}
 	};
 
+	let testCat = ['work', 'personal', 'healthcare', 'read', 'games'];
+	let categoryContent = testCat.map((el, i) => (
+		<Button
+			key={i}
+			value={el}
+			className={`category-btn ${el === category ? 'active' : ''}`}
+			onClick={onCategoryChanged}
+		>
+			{el}
+		</Button>
+	));
+
 	return (
 		<Container>
 			<Row>
@@ -120,82 +133,67 @@ export const EditTaskForm = ({ match }) => {
 			</Row>
 			<Row>
 				<Col>
-					<FloatingLabel label="Task Title" className="mb-3">
-						<Form.Control
-							placeholder="Task Title"
-							value={title}
-							onChange={onTitleChanged}
-							className="task-input"
-						/>
-					</FloatingLabel>
+					<CustomFloatingLabel
+						type={'text'}
+						label={'Title'}
+						value={title}
+						changeFunc={onTitleChanged}
+					/>
+					<CustomFloatingLabel
+						type={'text'}
+						label={'Details'}
+						value={details}
+						changeFunc={onDetailsChanged}
+					/>
 				</Col>
 				<Col>
-					<FloatingLabel label="Details" className="mb-3">
-						<Form.Control
-							placeholder="Add more detail to this task..."
-							value={details}
-							onChange={onDetailsChanged}
-							className="task-input"
-						/>
-					</FloatingLabel>
+					<p>Category</p>
+					{categoryContent}
 				</Col>
 			</Row>
 			<Row>
 				<Col>
-					<FloatingLabel label="Start-On" className="mb-3">
-						<Form.Control
-							type="datetime-local"
-							placeholder="Start-On"
-							value={startOn}
-							onChange={onStartOnChanged}
-							className="task-input"
-						/>
-					</FloatingLabel>
+					<CustomFloatingLabel
+						type={'datetime-local'}
+						label={'Start-On'}
+						value={startOn}
+						changeFunc={onStartOnChanged}
+					/>
+					<CustomFloatingLabel
+						type={'text'}
+						label={'Comments'}
+						value={additionalNotes}
+						changeFunc={onAdditionalNotesChanged}
+					/>
 				</Col>
 				<Col>
-					<FloatingLabel label="Due-On" className="mb-3">
-						<Form.Control
-							type="datetime-local"
-							placeholder="Start-On"
-							value={dueOn}
-							onChange={onDueOnChanged}
-							className="task-input"
-						/>
-					</FloatingLabel>
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<FloatingLabel label="Comments" className="mb-3">
-						<Form.Control
-							placeholder="Add extra notes or comments to this task..."
-							value={additionalNotes}
-							onChange={onAdditionalNotesChanged}
-							className="task-input"
-						/>
-					</FloatingLabel>
+					<CustomFloatingLabel
+						type={'datetime-local'}
+						label={'Due-On'}
+						value={dueOn}
+						changeFunc={onDueOnChanged}
+					/>
 				</Col>
 			</Row>
 			<Row>
+				<Col></Col>
+			</Row>
+			<Row>
 				<Col>
-					<FloatingLabel label="Target" className="mb-3">
-						<Form.Control
-							placeholder="Task Goal"
-							value={target}
-							onChange={onTargetChanged}
-							className="task-input"
-						/>
-					</FloatingLabel>
+					<CustomFloatingLabel
+						type={'number'}
+						label={'Target'}
+						value={target}
+						changeFunc={onTargetChanged}
+					/>
 				</Col>
 				<Col>
-					<FloatingLabel label="Achieved" className="mb-3">
-						<Form.Control
-							placeholder="Task Goal"
-							value={achieved}
-							onChange={onAchievedChanged}
-							className="task-input"
-						/>
-					</FloatingLabel>
+					<CustomFloatingLabel
+						type={'number'}
+						label={'Achieved'}
+						value={achieved}
+						changeFunc={onAchievedChanged}
+					/>
 				</Col>
 				<Col>
 					<Button onClick={onProgressUpdated} className="customBg-btn">
@@ -208,7 +206,7 @@ export const EditTaskForm = ({ match }) => {
 					<ProgressBar now={progress} label={`${progress}%`} animated />
 				</Col>
 			</Row>
-			<Row>
+			{/* 	<Row>
 				<Col>
 					<FloatingLabel label="Category" className="mb-3">
 						<Form.Control
@@ -219,7 +217,7 @@ export const EditTaskForm = ({ match }) => {
 						/>
 					</FloatingLabel>
 				</Col>
-			</Row>
+			</Row> */}
 			<Row>
 				<Col>
 					<Form.Label>mark completed</Form.Label>

@@ -34,6 +34,13 @@ export const taskUpdated = createAsyncThunk('tasks/taskUpdated', async (initialT
 	return response.data.data.task;
 });
 
+export const taskDeleted = createAsyncThunk('tasks/taskDeleted', async (id) => {
+	const response = await axios.delete(`${myApi}/${id}`);
+	console.log('taskDeleted');
+	console.log(response);
+	return id;
+});
+
 const tasksSlice = createSlice({
 	name: 'tasks',
 	initialState,
@@ -80,6 +87,17 @@ const tasksSlice = createSlice({
 		[taskUpdated.fulfilled]: (state, action) => {
 			state.status = 'succeeded';
 			tasksAdapter.upsertOne(state, action.payload);
+		},
+		[taskDeleted.pending]: (state, action) => {
+			state.status = 'loading';
+		},
+		[taskDeleted.rejected]: (state, action) => {
+			state.status = 'fail';
+			state.error = action.error.message;
+		},
+		[taskDeleted.fulfilled]: (state, action) => {
+			state.status = 'succeeded';
+			tasksAdapter.removeOne(state, action.payload);
 		},
 	},
 });

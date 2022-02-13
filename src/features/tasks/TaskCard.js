@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTaskById, taskUpdated } from './tasksSlice';
+import { DeleteTaskModal } from './DeleteTaskModal';
 
 import { Container, Row, Col, Form, ProgressBar } from 'react-bootstrap';
 
@@ -52,6 +53,7 @@ export const TaskCard = ({ taskId }) => {
 						<Link to={`/editTask/${task.id}`}>
 							<FaEdit />
 						</Link>
+						<DeleteTaskModal id={task.id} />
 					</Col>
 				</Row>
 				<ProgressBar now={task.progress} label={`${task.progress}%`} animated />
