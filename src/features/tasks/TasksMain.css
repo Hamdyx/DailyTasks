@@ -1,5 +1,41 @@
 .task-card {
 	text-align: left;
+	background: conic-gradient(
+		from 90deg at 50% 49.37%,
+		rgba(37, 92, 118, 0.25) 0deg,
+		rgba(93, 157, 187, 0.25) 50.26deg,
+		rgba(83, 87, 89, 0.44) 219.94deg,
+		rgba(176, 176, 176, 0.25) 360deg
+	);
+	border: 2px solid #6f6f6f;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	color: #124861;
+	padding: 1rem;
+	margin: 1rem 0;
+}
+.task-card.task-finished {
+	text-align: left;
+	background: conic-gradient(
+		from 90deg at 50% 49.37%,
+		rgba(37, 92, 118, 0.25) 0deg,
+		rgba(93, 157, 187, 0.25) 50.26deg,
+		rgba(42, 238, 85, 0.44) 219.94deg,
+		rgba(176, 176, 176, 0.25) 360deg
+	);
+	/* border: 2px solid #6f6f6f;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	color: #124861;
+	padding: 1rem;
+	margin: 1rem 0; */
+}
+.task-title {
+	text-transform: capitalize;
+	font-weight: 600;
+}
+.task-checkBtn {
+	/* display: none; */
 }
 
 .add-task-form {
@@ -43,9 +79,15 @@
 	border: 0.125rem solid #1cc79d;
 }
 
-.task-edit-icon {
+.taskCard-icons {
 	text-align: right;
+	display: none;
 }
+.taskCard-checkbox {
+	text-align: left;
+	display: none;
+}
+
 .editTask-returnIcon {
 	text-align: left;
 	font-size: 1.5rem;
@@ -55,14 +97,12 @@
 	color: #124861;
 }
 
-.task-edit-icon > a {
-	/* color: #6ec3ea; */
+.task-edit-icon {
 	color: #124861;
 }
 
-.task-edit-icon > a:hover {
+.task-edit-icon:hover {
 	color: #297aa0;
-	/* color: #124861; */
 }
 
 .task-edit-icon > .btn {

@@ -3,7 +3,6 @@ import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 
 import { AddTaskForm } from './AddTaskForm';
 import { TaskCard } from './TaskCard';
-
 import './TasksMain.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllTasks, selectTasksIds, fetchTasks } from './tasksSlice';
@@ -44,33 +43,13 @@ export const TasksMain = () => {
 	let avgProgress = 0;
 	if (tasksIds.length > 0) {
 		allTasks.forEach((task) => (totalProgress += task.progress));
-		// console.log(`totalProgress: ${totalProgress}`);
+
 		avgProgress = totalProgress / tasksIds.length;
-		// setProductivity(testProgress);
-		// console.log(`avgProgress: ${avgProgress}`);
 	}
 
-	const getFormatedDate = (d) => {
-		let ep = Date.parse(d);
-		// console.log(`Epoch ${ep}`);
-		let newDate = new Date(ep);
-		// console.log(`newDate: ${newDate}`);
-		let formatedDate = newDate.toLocaleDateString();
-		// console.log(`F-Date: ${formatedDate}`);
-		return formatedDate;
-	};
-
-	const onCategoryChange = (ev) => {
-		console.log(ev.target.value);
-		setCategory(ev.target.value);
-	};
-
-	// change the date to inputDate
-	const filteredTasks = allTasks.filter(
-		(task) =>
-			getFormatedDate(task.startOn) === getFormatedDate(task.startOn) &&
-			task.category === category
-	);
+	// filter by category
+	// @dev filter by dueDate
+	const filteredTasks = allTasks.filter((task) => task.category === category);
 
 	const handleInitialDailyTasks = () => {
 		if (tasksStatus === 'idle') {
@@ -79,23 +58,9 @@ export const TasksMain = () => {
 			console.log(`tasksStatus: ${tasksStatus}`);
 		}
 	};
+	let devTasks = filteredTasks;
+	let devContent = devTasks.map((task) => <TaskCard key={task.id} taskId={task.id} />);
 
-	let nextTasks = filteredTasks.filter(
-		(task) => task.isCompleted === false && task.progress === 0
-	);
-	let nextContent = nextTasks.map((task) => <TaskCard key={task.id} taskId={task.id} />);
-
-	let inProgressTasks = filteredTasks.filter(
-		(task) => task.progress > 0 && task.progress < 100
-	);
-	let inProgressContent = inProgressTasks.map((task) => (
-		<TaskCard key={task.id} taskId={task.id} />
-	));
-
-	let finishedTasks = filteredTasks.filter((task) => task.isCompleted === true);
-	let finishedContent = finishedTasks.map((task) => (
-		<TaskCard key={task.id} taskId={task.id} />
-	));
 	return (
 		<Container fluid>
 			<Row>
@@ -138,19 +103,9 @@ export const TasksMain = () => {
 			<Row className="tasks-sections">
 				<Col>
 					<p>
-						Next up <span className="tasks-status-badge">{nextContent.length}</span>
+						Next up <span className="tasks-status-badge">{devContent.length}</span>
 					</p>
-
-					{nextContent}
-				</Col>
-				<Col>
-					In Progress{' '}
-					<span className="tasks-status-badge">{inProgressContent.length}</span>
-					{inProgressContent}
-				</Col>
-				<Col>
-					Finished <span className="tasks-status-badge">{finishedContent.length}</span>
-					{finishedContent}
+					{devContent}
 				</Col>
 			</Row>
 		</Container>

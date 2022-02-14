@@ -29,7 +29,7 @@
         "dueOn": "2022-01-31T23:00",
         "additionalNotes": "",
         "isCompleted": false,
-        "progress": 15,
+        "progress": 25,
         "category": "work"
     },
     {
@@ -42,5 +42,16 @@
         "isCompleted": false,
         "progress": 0,
         "category": "work"
+    },
+    {
+        "id": "2022-02-14T17:00:16.624Z",
+        "title": "study",
+        "details": "learn react",
+        "startOn": "2022-02-14T19:00",
+        "dueOn": "2022-02-28T19:00",
+        "category": "work",
+        "additionalNotes": "",
+        "isCompleted": true,
+        "progress": 100
     }
 ]

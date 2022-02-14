@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTaskById, taskUpdated } from './tasksSlice';
 import { DeleteTaskModal } from './DeleteTaskModal';
+import Slide from 'react-reveal/Slide';
+import Flip from 'react-reveal/Flip';
 
 import { Container, Row, Col, Form, ProgressBar } from 'react-bootstrap';
 
@@ -41,26 +43,73 @@ export const TaskCard = ({ taskId }) => {
 		return `${datePart} ${timePart}`;
 	};
 
+	useEffect(() => {
+		console.log('adding onMouseEnter event');
+		document.querySelectorAll('.task-card').forEach((item) => {
+			// show taskCheckbox and editTask icons
+			item.addEventListener('mouseenter', (ev) => {
+				onTaskEnter(ev);
+			});
+			// hide taskCheckbox and editTask icons
+			item.addEventListener('mouseleave', (ev) => {
+				onTaskLeave(ev);
+			});
+		});
+	}, []);
+
+	const onTaskEnter = (ev) => {
+		let _target = ev.currentTarget;
+		let testRow = _target.firstChild;
+		let checkBtnRow = _target.children[4];
+		let checkBtnDom = checkBtnRow.children[0];
+		let testDom = testRow.children[1];
+
+		testDom.style.display = 'block';
+		checkBtnDom.style.display = 'block';
+	};
+	const onTaskLeave = (ev) => {
+		let _target = ev.currentTarget;
+		let testRow = _target.firstChild;
+		let testDom = testRow.children[1];
+		let checkBtnRow = _target.children[4];
+		let checkBtnDom = checkBtnRow.children[0];
+
+		testDom.style.display = 'none';
+		checkBtnDom.style.display = 'none';
+	};
+
 	let content;
 	if (task) {
 		content = (
 			<React.Fragment>
 				<Row>
-					<Col className="text-left">
-						<p>{task.title}</p>
+					<Col>
+						<p className="task-title">{task.title}</p>
 					</Col>
-					<Col className="task-edit-icon">
-						<Link to={`/editTask/${task.id}`}>
-							<FaEdit />
-						</Link>
-						<DeleteTaskModal id={task.id} />
+					<Col className="taskCard-icons">
+						<Slide right>
+							<Link className="task-edit-icon" to={`/editTask/${task.id}`}>
+								<FaEdit />
+							</Link>
+							<DeleteTaskModal id={task.id} />
+						</Slide>
 					</Col>
 				</Row>
 				<ProgressBar now={task.progress} label={`${task.progress}%`} animated />
 				<p>{task.details}</p>
 				<p>{task.additionalNotes}</p>
-				<Form.Check type="checkbox" onChange={onTaskCheck} checked={isCompleted} />
+
 				<Row>
+					<Col className="taskCard-checkbox">
+						<Slide left>
+							<Form.Check
+								type="checkbox"
+								className="task-checkBtn"
+								onChange={onTaskCheck}
+								checked={isCompleted}
+							/>
+						</Slide>
+					</Col>
 					<Col className="text-right">
 						<div className="dueTime-div">
 							<RiTimerLine />
@@ -73,5 +122,11 @@ export const TaskCard = ({ taskId }) => {
 	} else {
 		content = <div>Loading</div>;
 	}
-	return <Container className="customBg-card">{content}</Container>;
+	return (
+		<Flip top>
+			<Container className={`task-card ${isCompleted ? 'task-finished' : ''}`}>
+				{content}
+			</Container>
+		</Flip>
+	);
 };

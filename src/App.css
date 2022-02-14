@@ -138,14 +138,22 @@
 		#124861 98.4%
 	); */
 
-	background: conic-gradient(
+	/* background: conic-gradient(
 		from -79.49deg at 67.17% 68.51%,
 		#255c76 -49.23deg,
 		#255c76 47.07deg,
 		#6ec3ea 106.01deg,
 		#255c76 310.77deg,
 		#255c76 407.07deg
+	); */
+	background: conic-gradient(
+		from 90deg at 50% 49.37%,
+		rgba(37, 92, 118, 0.25) 0deg,
+		rgba(93, 157, 187, 0.25) 50.26deg,
+		rgba(83, 87, 89, 0.44) 219.94deg,
+		rgba(176, 176, 176, 0.25) 360deg
 	);
+	border: 2px solid #6f6f6f;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 	border-radius: 5px;
 	/* background-image: linear-gradient(
@@ -158,9 +166,17 @@
 
 	/* background-image: linear-gradient(135deg, #ffcf71 10%, #2376dd 100%); */
 
-	color: #ffffff;
+	color: #124861;
+	/* color: #ffffff; */
 	/* box-shadow: 0 0 0.5rem 0.0625rem rgb(52 58 64);
 	border-radius: 0.75rem; */
 	padding: 1rem;
 	margin: 1rem 0;
+}
+
+.taskCard-icons > .react-reveal {
+	display: inline-block;
+}
+.taskCard-checkbox > .react-reveal {
+	display: inline-block;
 }
