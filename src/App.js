@@ -9,11 +9,12 @@ import { TasksMain } from './features/tasks/TasksMain';
 import { ProjectsMain } from './features/projects/ProjectsMain';
 import { EditTaskForm } from './features/tasks/EditTaskForm';
 import { EditProjectForm } from './features/projects/EditProjectForm';
+import { TasksPage } from './pages/TasksPage';
 import './App.css';
+import 'animate.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { SingleTaskPage } from './features/tasks/SingleTaskPage';
-
 function App() {
 	return (
 		<Router>
@@ -27,7 +28,16 @@ function App() {
 							<Switch>
 								<Route exact path="/" render={() => <Dashboard />} />
 								<Route exact path="/calendar" render={() => <div>Calendar</div>} />
-								<Route exact path="/tasks" render={() => <TasksMain />} />
+								<Route
+									exact
+									path="/tasks"
+									render={() => (
+										<div>
+											<TasksPage />
+											<TasksMain />
+										</div>
+									)}
+								/>
 								<Route exact path="/projects" render={() => <ProjectsMain />} />
 								<Route exact path="/activity" render={() => <div>Activity</div>} />
 								<Route exact path="/analytics" render={() => <div>Analytics</div>} />

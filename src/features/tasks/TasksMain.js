@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
-import { AddTaskForm } from './AddTaskForm';
 import { TaskCard } from './TaskCard';
 import './TasksMain.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAllTasks, selectTasksIds, fetchTasks } from './tasksSlice';
+import { selectAllTasks, fetchTasks } from './tasksSlice';
 
 export const TasksMain = () => {
-	const [today, setToday] = useState('');
 	const [category, setCategory] = useState('work');
 
 	const dispatch = useDispatch();
-	const tasksImg = 'images/tasks_art.svg';
 
-	const tasksIds = useSelector(selectTasksIds);
 	const allTasks = useSelector(selectAllTasks);
 	const tasksStatus = useSelector((state) => state.tasks.status);
 
@@ -30,22 +26,13 @@ export const TasksMain = () => {
 			return res;
 		};
 		fetchData();
-		const testDate = new Date().toUTCString().split(' ');
-		setToday(`${testDate[1]} ${testDate[2]} ${testDate[3]}`);
+
 		document.querySelectorAll('.category-btn').forEach((item) => {
 			item.addEventListener('click', (ev) => {
 				setCategory(ev.currentTarget.value);
 			});
 		});
 	}, [dispatch]);
-
-	let totalProgress = 0;
-	let avgProgress = 0;
-	if (tasksIds.length > 0) {
-		allTasks.forEach((task) => (totalProgress += task.progress));
-
-		avgProgress = totalProgress / tasksIds.length;
-	}
 
 	// filter by category
 	// @dev filter by dueDate
@@ -63,32 +50,6 @@ export const TasksMain = () => {
 
 	return (
 		<Container fluid>
-			<Row>
-				<Col>
-					<AddTaskForm />
-				</Col>
-				<Col>
-					<Image src={tasksImg} alt="tasks art" width={450} height={300} />
-				</Col>
-			</Row>
-			<Row className="tasks-details">
-				<Col className="total-tasks">
-					<h6>Total Tasks</h6>
-					<p>{tasksIds.length}</p>
-				</Col>
-				<Col className="tasks-productivity">
-					<h6>Productivity</h6>
-					<p>{avgProgress.toFixed(2)}%</p>
-				</Col>
-				<Col className="tasks-dueDate">
-					<h6>Due date</h6>
-					<p>{today}</p>
-				</Col>
-				<Col className="tasks-attach">
-					<h6>Attachments</h6>
-					<p>85</p>
-				</Col>
-			</Row>
 			<Row>
 				<Col md={{ span: 8 }} className="text-left">
 					{categoryBtns}

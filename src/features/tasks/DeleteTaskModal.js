@@ -13,13 +13,17 @@ export const DeleteTaskModal = ({ id }) => {
 	const handleShow = () => setShow(true);
 
 	const handleDelete = async () => {
-		await dispatch(taskDeleted(id));
+		dispatch(taskDeleted(id));
 		handleClose();
 	};
 
 	return (
 		<>
-			<Button variant="primary" className="deleteTask-btn" onClick={handleShow}>
+			<Button
+				variant="primary"
+				className="deleteTask-btn animate__animated animate__fadeInRight"
+				onClick={handleShow}
+			>
 				<IoTrashBin />
 			</Button>
 

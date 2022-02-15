@@ -50,13 +50,21 @@ export const Navbar = () => {
 	let navItems = routes.map((el, i) => (
 		<NavItem key={i} title={el} icon={icons[i]} path={path} />
 	));
+
+	const formatTitle = (t) => {
+		return `${t.slice(0, 1)[0].toUpperCase()}${t.slice(1)}`;
+	};
 	useEffect(() => {
 		let navDom = document.querySelector('.nav-section');
 
+		document.title =
+			path === '/' ? formatTitle('dailytasks') : formatTitle(path.split('/')[1]);
 		navDom.childNodes.forEach((el) => {
 			el.addEventListener('click', (ev) => {
 				let _path = ev.target.href.split('http://localhost:3000')[1];
 
+				document.title =
+					_path === '/' ? formatTitle('dailytasks') : formatTitle(_path.split('/')[1]);
 				setPath(_path);
 			});
 		});

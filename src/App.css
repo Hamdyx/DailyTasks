@@ -177,6 +177,12 @@
 .taskCard-icons > .react-reveal {
 	display: inline-block;
 }
+.taskCard-icons > .animate__animated {
+	display: inline-block;
+}
 .taskCard-checkbox > .react-reveal {
+	display: inline-block;
+}
+.taskCard-checkbox > .animate__animated {
 	display: inline-block;
 }

@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTaskById, taskUpdated } from './tasksSlice';
 import { DeleteTaskModal } from './DeleteTaskModal';
-import Slide from 'react-reveal/Slide';
-import Flip from 'react-reveal/Flip';
 
 import { Container, Row, Col, Form, ProgressBar } from 'react-bootstrap';
 
 import { FaEdit } from 'react-icons/fa';
 import { RiTimerLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
+
+// const DateIcons = React.lazy(() => import('react-icons/ri'));
 
 export const TaskCard = ({ taskId }) => {
 	const dispatch = useDispatch();
@@ -47,20 +47,21 @@ export const TaskCard = ({ taskId }) => {
 		console.log('adding onMouseEnter event');
 		document.querySelectorAll('.task-card').forEach((item) => {
 			// show taskCheckbox and editTask icons
-			item.addEventListener('mouseenter', (ev) => {
+			/* item.addEventListener('mouseenter', (ev) => {
 				onTaskEnter(ev);
-			});
+			}); */
 			// hide taskCheckbox and editTask icons
-			item.addEventListener('mouseleave', (ev) => {
+			/* item.addEventListener('mouseleave', (ev) => {
 				onTaskLeave(ev);
-			});
+			}); */
 		});
 	}, []);
 
 	const onTaskEnter = (ev) => {
+		console.log('onTaskEnter called');
 		let _target = ev.currentTarget;
 		let testRow = _target.firstChild;
-		let checkBtnRow = _target.children[4];
+		let checkBtnRow = _target.children[3];
 		let checkBtnDom = checkBtnRow.children[0];
 		let testDom = testRow.children[1];
 
@@ -71,7 +72,7 @@ export const TaskCard = ({ taskId }) => {
 		let _target = ev.currentTarget;
 		let testRow = _target.firstChild;
 		let testDom = testRow.children[1];
-		let checkBtnRow = _target.children[4];
+		let checkBtnRow = _target.children[3];
 		let checkBtnDom = checkBtnRow.children[0];
 
 		testDom.style.display = 'none';
@@ -86,32 +87,34 @@ export const TaskCard = ({ taskId }) => {
 					<Col>
 						<p className="task-title">{task.title}</p>
 					</Col>
-					<Col className="taskCard-icons">
-						<Slide right>
-							<Link className="task-edit-icon" to={`/editTask/${task.id}`}>
-								<FaEdit />
-							</Link>
-							<DeleteTaskModal id={task.id} />
-						</Slide>
+					<Col className="taskCard-icons ">
+						<Link
+							className="task-edit-icon animate__animated animate__fadeInRight"
+							to={`/editTask/${task.id}`}
+						>
+							<FaEdit />
+						</Link>
+						<DeleteTaskModal id={task.id} />
 					</Col>
 				</Row>
-				<ProgressBar now={task.progress} label={`${task.progress}%`} animated />
+				{/* <ProgressBar now={task.progress} label={`${task.progress}%`} animated /> */}
 				<p>{task.details}</p>
 				<p>{task.additionalNotes}</p>
 
 				<Row>
-					<Col className="taskCard-checkbox">
-						<Slide left>
-							<Form.Check
-								type="checkbox"
-								className="task-checkBtn"
-								onChange={onTaskCheck}
-								checked={isCompleted}
-							/>
-						</Slide>
+					<Col className="taskCard-checkbox ">
+						<Form.Check
+							type="checkbox"
+							className="task-checkBtn animate__animated animate__fadeInLeft"
+							onChange={onTaskCheck}
+							checked={isCompleted}
+						/>
 					</Col>
 					<Col className="text-right">
 						<div className="dueTime-div">
+							{/* <Suspense fallback={<div>loading</div>}>
+								<DateIcons />
+							</Suspense> */}
 							<RiTimerLine />
 							{formatDueDate(task.dueOn)}
 						</div>
@@ -123,10 +126,14 @@ export const TaskCard = ({ taskId }) => {
 		content = <div>Loading</div>;
 	}
 	return (
-		<Flip top>
-			<Container className={`task-card ${isCompleted ? 'task-finished' : ''}`}>
-				{content}
-			</Container>
-		</Flip>
+		<Container
+			className={`task-card ${
+				isCompleted ? 'task-finished' : ''
+			} animate__animated animate__flipInX`}
+			onMouseEnter={onTaskEnter}
+			onMouseLeave={onTaskLeave}
+		>
+			{content}
+		</Container>
 	);
 };
