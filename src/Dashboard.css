@@ -5,12 +5,12 @@
 .tasks-timeframe.btn {
 	background: none;
 	border: none;
-	color: #124861;
+	color: var(--baseColor);
 }
 
 .tasks-timeframe.btn:hover {
 	background: none;
-	color: #7fccf0;
+	color: var(--subColor);
 }
 
 .dashboard-left.col {
@@ -81,13 +81,13 @@
 .profile-btn.btn {
 	background: none;
 	border: 0;
-	color: #124861;
+	color: var(--baseColor);
 }
 
 .profile-btn.btn:hover {
 	background: none;
 	border: 0;
-	color: #6ec3ea;
+	color: var(--subColor);
 }
 
 .dashboard-project-tracker.container {
@@ -121,15 +121,15 @@
 }
 
 .dashboard-addTask.btn {
-	background-color: #124861;
+	background-color: var(--baseColor);
 	border: 0;
 	padding: 0.75rem 1.5rem 0.75rem 1.5rem;
 	border-radius: 1rem;
 }
 
 .dashboard-addTask.btn:hover {
-	background-color: #7fccf0;
-	color: #124861;
+	background-color: var(--subColor);
+	color: var(--baseColor);
 }
 
 .projects-tracker-btn {
@@ -137,13 +137,13 @@
 }
 .projects-tracker-btn > button {
 	margin: 1.125rem 0 0 0;
-	background-color: #124861;
+	background-color: var(--baseColor);
 	color: #e6ebed;
 	border: 0;
 	padding: 0.5rem 1rem 0.7rem 1rem;
 	font-size: 1.25rem;
 }
 .projects-tracker-btn > button.btn:hover {
-	background-color: #6ec3ea;
-	color: #124861;
+	background-color: var(--subColor);
+	color: var(--baseColor);
 }
