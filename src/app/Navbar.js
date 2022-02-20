@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom';
 import { RiDashboardFill } from 'react-icons/ri';
 import { IoCalendarOutline } from 'react-icons/io5';
 import { FaTasks } from 'react-icons/fa';
-import { AiOutlineProject, AiOutlinePieChart, AiOutlineSetting } from 'react-icons/ai';
+import {
+	AiOutlineProject,
+	AiOutlinePieChart,
+	AiOutlineSetting,
+} from 'react-icons/ai';
 import { FiActivity } from 'react-icons/fi';
 
 import './Navbar.css';
@@ -58,13 +62,19 @@ export const Navbar = () => {
 		let navDom = document.querySelector('.nav-section');
 
 		document.title =
-			path === '/' ? formatTitle('dailytasks') : formatTitle(path.split('/')[1]);
-		navDom.childNodes.forEach((el) => {
+			path === '/'
+				? formatTitle('dailytasks')
+				: formatTitle(path.split('/')[1]);
+
+		[...navDom.querySelectorAll('a')].forEach((el) => {
 			el.addEventListener('click', (ev) => {
 				let _path = ev.target.href.split('http://localhost:3000')[1];
 
 				document.title =
-					_path === '/' ? formatTitle('dailytasks') : formatTitle(_path.split('/')[1]);
+					_path === '/'
+						? formatTitle('dailytasks')
+						: formatTitle(_path.split('/')[1]);
+
 				setPath(_path);
 			});
 		});
@@ -84,7 +94,89 @@ export const Navbar = () => {
 		<aside className="side-navbar">
 			<Nav defaultActiveKey="/" className="flex-column nav-section">
 				{navItems}
+				<ColorModeToggle />
 			</Nav>
 		</aside>
+	);
+};
+
+const ColorModeToggle = () => {
+	function handleModeToggle() {
+		console.log('modeToggle clicked');
+		console.log(this);
+		console.log(this.checked);
+		let darkMode = {
+			mainBgColor: '#41435c',
+			baseColor: '#14213d',
+			subColor: '#005F73',
+			subColor1: '#0A9396',
+			mainTxtColor: '#fff',
+		};
+		let lightMode = {
+			mainBgColor: '#e1e4e6',
+			baseColor: '#264653',
+			subColor: '#7fccf0',
+			subColor1: '#2a9d8f',
+			mainTxtColor: '#264653',
+		};
+		if (!this.checked) {
+			document.documentElement.style.setProperty(
+				`--mainBgColor`,
+				lightMode.mainBgColor
+			);
+			document.documentElement.style.setProperty(
+				`--mainTxtColor`,
+				lightMode.mainTxtColor
+			);
+			document.documentElement.style.setProperty(
+				`--baseColor`,
+				lightMode.baseColor
+			);
+			document.documentElement.style.setProperty(
+				`--subColor`,
+				lightMode.subColor
+			);
+			document.documentElement.style.setProperty(
+				`--subColor1`,
+				lightMode.subColor1
+			);
+		} else {
+			document.documentElement.style.setProperty(
+				`--mainBgColor`,
+				darkMode.mainBgColor
+			);
+			document.documentElement.style.setProperty(
+				`--mainTxtColor`,
+				darkMode.mainTxtColor
+			);
+			document.documentElement.style.setProperty(
+				`--baseColor`,
+				darkMode.baseColor
+			);
+			document.documentElement.style.setProperty(
+				`--subColor`,
+				darkMode.subColor
+			);
+			document.documentElement.style.setProperty(
+				`--subColor1`,
+				darkMode.subColor1
+			);
+		}
+	}
+
+	useEffect(() => {
+		const toggle = document.querySelector('#toggle-checkbox');
+		console.log(toggle.checked);
+		toggle.addEventListener('click', handleModeToggle);
+	});
+
+	return (
+		<div className="mode-wrapper">
+			<label className="darkmode-toggle" htmlFor="toggle-checkbox">
+				<span className="visually-hidden">Enable dark mode</span>
+				<input type="checkbox" id="toggle-checkbox" />
+				<span className="toggle-slider" aria-hidden="true"></span>
+			</label>
+		</div>
 	);
 };

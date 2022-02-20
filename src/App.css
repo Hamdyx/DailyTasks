@@ -1,7 +1,9 @@
 :root {
+	--mainBgColor: #e1e4e6;
 	--baseColor: #264653;
 	--subColor: #7fccf0;
 	--subColor1: #2a9d8f;
+	--mainTxtColor: #264653;
 }
 
 #root {
@@ -18,7 +20,7 @@
 
 .App {
 	text-align: center;
-	color: var(--baseColor);
+	color: var(--mainTxtColor);
 	margin-top: 1rem;
 }
 
@@ -37,7 +39,7 @@
 }
 
 .main-page {
-	background-color: #e1e4e6;
+	background-color: var(--mainBgColor);
 }
 
 .text-header {
