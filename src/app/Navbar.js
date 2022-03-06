@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-// import { useRouter } from 'next/router';
 
 import { RiDashboardFill } from 'react-icons/ri';
 import { IoCalendarOutline } from 'react-icons/io5';
@@ -78,7 +77,7 @@ export const Navbar = () => {
 				setPath(_path);
 			});
 		});
-	}, []);
+	});
 
 	const updateNavItems = (path) => {
 		navItems = routes.map((el, i) => (

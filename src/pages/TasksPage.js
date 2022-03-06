@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { Container, Row, Col, Image } from 'react-bootstrap';
 
 import { AddTaskForm } from '../features/tasks/AddTaskForm';
-// import { TaskCard } from './TaskCard';
-// import './Tasks.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectAllTasks, selectTasksIds, fetchTasks } from '../features/tasks/tasksSlice';
+
+import { useSelector } from 'react-redux';
+import { selectAllTasks, selectTasksIds } from '../features/tasks/tasksSlice';
 
 export const TasksPage = () => {
 	const tasksImg = 'images/tasks_art.svg';
@@ -50,36 +48,6 @@ export const TasksPage = () => {
 					<p>85</p>
 				</Col>
 			</Row>
-			{/*
-			<Row>
-				<Col md={{ span: 8 }} className="text-left">
-					{categoryBtns}
-				</Col>
-				<Col>
-					<Button className="category-btn">
-						<span className="addCategory-icon"></span>
-						new category
-					</Button>
-				</Col>
-			</Row>
-			<Row className="tasks-sections">
-				<Col>
-					<p>
-						Next up <span className="tasks-status-badge">{devContent.length}</span>
-					</p>
-					{devContent}
-				</Col>
-			</Row> */}
 		</Container>
 	);
 };
-/* 
-const CategoryBtn = ({ category, active }) => {
-	return (
-		<Button className="category-btn" value={category} active={active}>
-			<span className={`${category}-icon`}></span>
-			{category}
-		</Button>
-	);
-};
- */

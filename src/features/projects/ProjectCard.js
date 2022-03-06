@@ -18,8 +18,8 @@ export const ProjectCard = ({ projectId }) => {
 		} else {
 			return (
 				<ul className="text-left">
-					{checklist.map((el) => (
-						<li>{el.title}</li>
+					{checklist.map((el, i) => (
+						<li key={i}>{el.title}</li>
 					))}
 				</ul>
 			);

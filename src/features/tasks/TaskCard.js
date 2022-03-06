@@ -1,15 +1,13 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTaskById, taskUpdated } from './tasksSlice';
 import { DeleteTaskModal } from './DeleteTaskModal';
 
-import { Container, Row, Col, Form, ProgressBar } from 'react-bootstrap';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 
 import { FaEdit } from 'react-icons/fa';
 import { RiTimerLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
-
-// const DateIcons = React.lazy(() => import('react-icons/ri'));
 
 export const TaskCard = ({ taskId }) => {
 	const dispatch = useDispatch();
@@ -24,7 +22,16 @@ export const TaskCard = ({ taskId }) => {
 		isCompleted = ev.target.checked;
 		let progress = isCompleted ? 100 : 0;
 		let { id, title, details, additionalNotes } = task;
-		dispatch(taskUpdated({ id, title, details, additionalNotes, isCompleted, progress }));
+		dispatch(
+			taskUpdated({
+				id,
+				title,
+				details,
+				additionalNotes,
+				isCompleted,
+				progress,
+			})
+		);
 	};
 
 	const formatDueDate = (date) => {
@@ -39,22 +46,15 @@ export const TaskCard = ({ taskId }) => {
 			datePart = `${dateString[1]} ${dateString[2]}`;
 		}
 
-		const timePart = `${timeString[0]}:${timeString[1]} ${timeString[2].split(' ')[1]}`;
+		const timePart = `${timeString[0]}:${timeString[1]} ${
+			timeString[2].split(' ')[1]
+		}`;
 		return `${datePart} ${timePart}`;
 	};
 
 	useEffect(() => {
 		console.log('adding onMouseEnter event');
-		document.querySelectorAll('.task-card').forEach((item) => {
-			// show taskCheckbox and editTask icons
-			/* item.addEventListener('mouseenter', (ev) => {
-				onTaskEnter(ev);
-			}); */
-			// hide taskCheckbox and editTask icons
-			/* item.addEventListener('mouseleave', (ev) => {
-				onTaskLeave(ev);
-			}); */
-		});
+		document.querySelectorAll('.task-card').forEach((item) => {});
 	}, []);
 
 	const onTaskEnter = (ev) => {
@@ -97,7 +97,6 @@ export const TaskCard = ({ taskId }) => {
 						<DeleteTaskModal id={task.id} />
 					</Col>
 				</Row>
-				{/* <ProgressBar now={task.progress} label={`${task.progress}%`} animated /> */}
 				<p>{task.details}</p>
 				<p>{task.additionalNotes}</p>
 
@@ -112,9 +111,6 @@ export const TaskCard = ({ taskId }) => {
 					</Col>
 					<Col className="text-right">
 						<div className="dueTime-div">
-							{/* <Suspense fallback={<div>loading</div>}>
-								<DateIcons />
-							</Suspense> */}
 							<RiTimerLine />
 							{formatDueDate(task.dueOn)}
 						</div>

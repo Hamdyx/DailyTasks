@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import { Col, Container, Row, Button, Form, Table } from 'react-bootstrap'
+import { useEffect, useState } from 'react';
+import { Col, Container, Row, Button, Form, Table } from 'react-bootstrap';
 import {
 	IoNotificationsSharp,
 	IoMailSharp,
 	IoCaretForward,
-} from 'react-icons/io5'
+} from 'react-icons/io5';
 
-import { useSelector } from 'react-redux'
-import { selectAllTasks, selectTasksIds } from './features/tasks/tasksSlice'
+import { useSelector } from 'react-redux';
+import { selectTasksIds } from './features/tasks/tasksSlice';
 
-import { TaskCard } from './features/tasks/TaskCard'
+import { TaskCard } from './features/tasks/TaskCard';
 
-import './Dashboard.css'
-const avatarImg = 'images/avatar.png'
+import './Dashboard.css';
+const avatarImg = 'images/avatar.png';
 
 export const Dashboard = () => {
-	const taskStatus = useSelector((state) => state.tasks.status)
-	const error = useSelector((state) => state.tasks.error)
-	const allTasksIds = useSelector(selectTasksIds)
-	let tasksIdsArr = allTasksIds.filter((id) => id <= 5)
+	const taskStatus = useSelector((state) => state.tasks.status);
+	const error = useSelector((state) => state.tasks.error);
+	const allTasksIds = useSelector(selectTasksIds);
+	let tasksIdsArr = allTasksIds.filter((id) => id <= 5);
 
-	let content
+	let content;
 
 	if (taskStatus === 'loading') {
-		content = <div className="loader">Loading...</div>
+		content = <div className="loader">Loading...</div>;
 	} else if (taskStatus === 'succeeded') {
 		content = tasksIdsArr.map((taskId) => (
 			<TaskCard key={taskId} taskId={taskId} />
-		))
+		));
 	} else if (taskStatus === 'failed') {
-		content = <div>{error}</div>
+		content = <div>{error}</div>;
 	} else if (taskStatus === 'idle') {
 		content = allTasksIds.map((taskId) => (
 			<TaskCard key={taskId} taskId={taskId} />
-		))
+		));
 	}
 
 	return (
@@ -63,19 +63,19 @@ export const Dashboard = () => {
 				</Col>
 			</Row>
 		</Container>
-	)
-}
+	);
+};
 
 const DashboardSchedule = () => {
-	const [today, setToday] = useState('')
-	const [currMonth, setCurrMonth] = useState('')
+	const [today, setToday] = useState('');
+	const [currMonth, setCurrMonth] = useState('');
 
 	useEffect(() => {
-		let _today = new Date()
-		let _month = _today.toLocaleString('default', { month: 'long' })
-		setToday(_today)
-		setCurrMonth(_month)
-	}, [])
+		let _today = new Date();
+		let _month = _today.toLocaleString('default', { month: 'long' });
+		setToday(_today);
+		setCurrMonth(_month);
+	}, []);
 	return (
 		<Container className="dashboard-schedule">
 			<Row>
@@ -97,8 +97,8 @@ const DashboardSchedule = () => {
 				</Col>
 			</Row>
 		</Container>
-	)
-}
+	);
+};
 
 const ProjectTracker = () => {
 	return (
@@ -115,11 +115,10 @@ const ProjectTracker = () => {
 				</Col>
 			</Row>
 		</Container>
-	)
-}
+	);
+};
 
 const ScheduleCalendar = () => {
-	const allTasks = useSelector(selectAllTasks)
 	const getDays = () => {
 		let daysInWeek = [
 			'Sunday',
@@ -129,25 +128,25 @@ const ScheduleCalendar = () => {
 			'Thursday',
 			'Friday',
 			'Saturday',
-		]
+		];
 
-		let days = daysInWeek.map((d, i) => <th key={i}>{d.slice(0, 3)}</th>)
+		let days = daysInWeek.map((d, i) => <th key={i}>{d.slice(0, 3)}</th>);
 
-		return days
-	}
+		return days;
+	};
 
 	const getDates = () => {
-		let datesLimit = 14
-		let datesArr1 = []
-		let datesArr2 = []
+		let datesLimit = 14;
+		let datesArr1 = [];
+		let datesArr2 = [];
 		for (let i = 1; i <= datesLimit / 2; i++) {
-			datesArr1.push(<td key={i}>{i}</td>)
+			datesArr1.push(<td key={i}>{i}</td>);
 		}
 		for (let i = 8; i <= datesLimit; i++) {
-			datesArr2.push(<td key={i}>{i}</td>)
+			datesArr2.push(<td key={i}>{i}</td>);
 		}
 
-		let content
+		let content;
 
 		if (datesArr1 && datesArr2) {
 			content = (
@@ -155,7 +154,7 @@ const ScheduleCalendar = () => {
 					<tr>{datesArr1}</tr>
 					<tr>{datesArr2}</tr>
 				</tbody>
-			)
+			);
 		} else {
 			content = (
 				<tbody>
@@ -170,20 +169,11 @@ const ScheduleCalendar = () => {
 						))}
 					</tr>
 				</tbody>
-			)
+			);
 		}
 
-		return content
-	}
-
-	const getTasks = () => {
-		let tasksContent = []
-		for (let i = 0; i < 3 && i < allTasks.length; i++) {
-			let _task = allTasks[i]
-			tasksContent.push(<TaskCard key={_task.id} taskId={_task.id} />)
-		}
-		return tasksContent
-	}
+		return content;
+	};
 
 	return (
 		<Container>
@@ -198,8 +188,8 @@ const ScheduleCalendar = () => {
 				<Col>{getTasks()}</Col>
 			</Row> */}
 		</Container>
-	)
-}
+	);
+};
 
 const DashboardProfile = () => {
 	return (
@@ -222,5 +212,5 @@ const DashboardProfile = () => {
 				</Col>
 			</Row>
 		</Container>
-	)
-}
+	);
+};

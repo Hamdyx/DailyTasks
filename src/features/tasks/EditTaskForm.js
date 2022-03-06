@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CustomFloatingLabel from '../../components/inputs/CustomFloatingLabel';
@@ -13,7 +13,6 @@ import {
 	Row,
 	Button,
 	ProgressBar,
-	FloatingLabel,
 } from 'react-bootstrap';
 
 export const EditTaskForm = ({ match }) => {
@@ -26,11 +25,6 @@ export const EditTaskForm = ({ match }) => {
 		console.log(taskId);
 
 		console.log('task not found in EditTaskForm');
-		/* return (
-			<section>
-				<h2>Task not found!</h2>
-			</section>
-		); */
 	}
 
 	const [title, setTitle] = useState(task.title);
@@ -54,28 +48,20 @@ export const EditTaskForm = ({ match }) => {
 	const onAdditionalNotesChanged = (e) => setAdditionalNotes(e.target.value);
 
 	const onTaskCheck = (ev) => {
-		console.log(`${ev.target.checked}`);
-		// isCompleted = ev.target.checked;
 		let _progress = ev.target.checked ? 100 : 0;
 		setIsCompleted(ev.target.checked);
 		setProgress(_progress);
-		// let isCompleted = ev.target.checked;
-		// let { id, title, details } = task;
-		// dispatch(taskUpdated({ id, title, details, additionalNotes, isCompleted, progress }));
 	};
 
 	const onTargetChanged = (ev) => {
 		setTarget(ev.target.value);
-		// onProgressUpdated();
 	};
 
 	const onAchievedChanged = (ev) => {
 		setAchieved(ev.target.value);
-		// onProgressUpdated();
 	};
 	const onCategoryChanged = (ev) => {
 		setCategory(ev.target.value);
-		// onProgressUpdated();
 	};
 	const onProgressUpdated = () => {
 		console.log(`target: ${target}`);
@@ -206,25 +192,21 @@ export const EditTaskForm = ({ match }) => {
 					<ProgressBar now={progress} label={`${progress}%`} animated />
 				</Col>
 			</Row>
-			{/* 	<Row>
-				<Col>
-					<FloatingLabel label="Category" className="mb-3">
-						<Form.Control
-							placeholder="Task Category"
-							value={category}
-							onChange={onCategoryChanged}
-							className="task-input"
-						/>
-					</FloatingLabel>
-				</Col>
-			</Row> */}
 			<Row>
 				<Col>
 					<Form.Label>mark completed</Form.Label>
-					<Form.Check type="checkbox" onChange={onTaskCheck} checked={isCompleted} />
+					<Form.Check
+						type="checkbox"
+						onChange={onTaskCheck}
+						checked={isCompleted}
+					/>
 				</Col>
 				<Col>
-					<Link to={`/tasks`} onClick={onSaveTaskClicked} className="customBg-link">
+					<Link
+						to={`/tasks`}
+						onClick={onSaveTaskClicked}
+						className="customBg-link"
+					>
 						Save Task
 					</Link>
 				</Col>

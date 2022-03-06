@@ -12,17 +12,17 @@ export const TasksMain = () => {
 	const dispatch = useDispatch();
 
 	const allTasks = useSelector(selectAllTasks);
-	const tasksStatus = useSelector((state) => state.tasks.status);
 
 	const categories = ['work', 'personal', 'healthcare', 'read', 'games'];
 	let categoryBtns = [];
 	categoryBtns = categories.map((el, i) => (
 		<CategoryBtn key={i} category={el} active={el === category} />
 	));
+
 	useEffect(() => {
 		const fetchData = async () => {
-			let res = await dispatch(fetchTasks());
-			handleInitialDailyTasks();
+			let res = dispatch(fetchTasks());
+
 			return res;
 		};
 		fetchData();
@@ -38,15 +38,10 @@ export const TasksMain = () => {
 	// @dev filter by dueDate
 	const filteredTasks = allTasks.filter((task) => task.category === category);
 
-	const handleInitialDailyTasks = () => {
-		if (tasksStatus === 'idle') {
-			console.log(`tasksStatus: ${tasksStatus}`);
-		} else if (tasksStatus === 'succeeded') {
-			console.log(`tasksStatus: ${tasksStatus}`);
-		}
-	};
 	let devTasks = filteredTasks;
-	let devContent = devTasks.map((task) => <TaskCard key={task.id} taskId={task.id} />);
+	let devContent = devTasks.map((task) => (
+		<TaskCard key={task.id} taskId={task.id} />
+	));
 
 	return (
 		<Container fluid>
@@ -64,7 +59,8 @@ export const TasksMain = () => {
 			<Row className="tasks-sections">
 				<Col>
 					<p>
-						Next up <span className="tasks-status-badge">{devContent.length}</span>
+						Next up{' '}
+						<span className="tasks-status-badge">{devContent.length}</span>
 					</p>
 					{devContent}
 				</Col>

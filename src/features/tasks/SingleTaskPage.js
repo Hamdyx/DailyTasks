@@ -1,5 +1,3 @@
-import React from 'react';
-import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectTaskById } from './tasksSlice';

@@ -3,7 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { projectUpdated, selectProjectById } from './projectsSlice';
 
-import { Col, Container, Form, Row, FloatingLabel, Button } from 'react-bootstrap';
+import {
+	Col,
+	Container,
+	Form,
+	Row,
+	FloatingLabel,
+	Button,
+} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export const EditProjectForm = ({ match }) => {
@@ -37,7 +44,12 @@ export const EditProjectForm = ({ match }) => {
 			return <h5>There is no checklist</h5>;
 		} else {
 			content = checklist.map((el, i) => (
-				<ChecklistItem key={i} item={el} list={checklist} setList={setChecklist} />
+				<ChecklistItem
+					key={i}
+					item={el}
+					list={checklist}
+					setList={setChecklist}
+				/>
 			));
 		}
 		return <ul className="text-left">{content}</ul>;
@@ -119,7 +131,11 @@ export const EditProjectForm = ({ match }) => {
 					{/* <Button onClick={handleFormSubmit} className="customBg-btn">
 						Save Project
 					</Button> */}
-					<Link to={`/projects`} onClick={handleFormSubmit} className="customBg-link">
+					<Link
+						to={`/projects`}
+						onClick={handleFormSubmit}
+						className="customBg-link"
+					>
 						Save Project
 					</Link>
 				</Col>
@@ -150,9 +166,9 @@ const Checklist = ({ checklist, setChecklist }) => {
 			completionDate: '',
 		});
 		setChecklist(_checklist);
-		setTitle('');
-		setStartDate('');
-		setDueDate('');
+		// setTitle('');
+		// setStartDate('');
+		// setDueDate('');
 	};
 
 	return (
@@ -162,7 +178,11 @@ const Checklist = ({ checklist, setChecklist }) => {
 			</Col>
 			<Col>
 				<FloatingLabel label="Task Title" className="mb-3">
-					<Form.Control placeholder="Task Title" value={title} onChange={titleChanged} />
+					<Form.Control
+						placeholder="Task Title"
+						value={title}
+						onChange={titleChanged}
+					/>
 				</FloatingLabel>
 			</Col>
 			<Col>

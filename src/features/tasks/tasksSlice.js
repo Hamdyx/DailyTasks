@@ -2,7 +2,6 @@ import {
 	createSlice,
 	nanoid,
 	createAsyncThunk,
-	createSelector,
 	createEntityAdapter,
 } from '@reduxjs/toolkit';
 
@@ -24,15 +23,24 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
 	return response.data.data.tasks;
 });
 
-export const addNewTask = createAsyncThunk('tasks/addNewTask', async (initialTask) => {
-	const response = await axios.post(`${myApi}`, initialTask);
-	return response.data.data.task;
-});
+export const addNewTask = createAsyncThunk(
+	'tasks/addNewTask',
+	async (initialTask) => {
+		const response = await axios.post(`${myApi}`, initialTask);
+		return response.data.data.task;
+	}
+);
 
-export const taskUpdated = createAsyncThunk('tasks/taskUpdated', async (initialTask) => {
-	const response = await axios.patch(`${myApi}/${initialTask.id}`, initialTask);
-	return response.data.data.task;
-});
+export const taskUpdated = createAsyncThunk(
+	'tasks/taskUpdated',
+	async (initialTask) => {
+		const response = await axios.patch(
+			`${myApi}/${initialTask.id}`,
+			initialTask
+		);
+		return response.data.data.task;
+	}
+);
 
 export const taskDeleted = createAsyncThunk('tasks/taskDeleted', async (id) => {
 	const response = await axios.delete(`${myApi}/${id}`);

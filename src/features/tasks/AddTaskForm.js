@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import CustomFloatingLabel from '../../components/inputs/CustomFloatingLabel';
 import { addNewTask } from './tasksSlice';
@@ -12,7 +12,6 @@ export const AddTaskForm = () => {
 	const [dueOn, setDueOn] = useState('');
 	const [category, setCategory] = useState('work');
 	const [additionalNotes, setAdditionalNotes] = useState('');
-	const [addRequestStatus, setAddRequestStatus] = useState('');
 
 	const [show, setShow] = useState(false);
 
@@ -27,8 +26,6 @@ export const AddTaskForm = () => {
 	const onDueOnChanged = (e) => setDueOn(e.target.value);
 	const onNotesChanged = (e) => setAdditionalNotes(e.target.value);
 	const onCategoryChanged = (e) => setCategory(e.target.value);
-
-	const canSave = [title].every(Boolean) && addRequestStatus === 'idle';
 
 	const onFormSubmit = () => {
 		if (title && details) {
@@ -76,8 +73,8 @@ export const AddTaskForm = () => {
 	return (
 		<section className="add-task-form">
 			<p>
-				here you can track all of your tasks which are upcoming, in progress or already
-				finished, also you can add new customised tasks
+				here you can track all of your tasks which are upcoming, in progress or
+				already finished, also you can add new customised tasks
 			</p>
 			<Button className="customBg-btn" onClick={handleModalShow}>
 				ADD TASK
