@@ -1,19 +1,11 @@
-:root {
-	--mainBgColor: #e1e4e6;
-	--baseColor: #264653;
-	--subColor: #7fccf0;
-	--subColor1: #2a9d8f;
-	--mainTxtColor: #264653;
-}
-
 #root {
-	min-height: 100vh;
+	/* 	min-height: 100vh; */
+	/* min-width: 100%; */
 }
 
-/* #root > div {
-	min-height: 100vh;
-} */
-
+.main-content {
+	width: 100%;
+}
 .main-content > .row {
 	min-height: 100vh;
 }

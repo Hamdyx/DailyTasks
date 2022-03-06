@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+} from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { Navbar } from './app/Navbar';
@@ -20,14 +25,18 @@ function App() {
 		<Router>
 			<Container fluid className="main-content">
 				<Row>
-					<Col sm={3} md={3} className="navbar-col">
+					<Col sm={12} md={3} lg={3} className="navbar-col">
 						<Navbar />
 					</Col>
 					<Col className="main-page">
 						<div className="App">
 							<Switch>
 								<Route exact path="/" render={() => <Dashboard />} />
-								<Route exact path="/calendar" render={() => <div>Calendar</div>} />
+								<Route
+									exact
+									path="/calendar"
+									render={() => <div>Calendar</div>}
+								/>
 								<Route
 									exact
 									path="/tasks"
@@ -39,12 +48,32 @@ function App() {
 									)}
 								/>
 								<Route exact path="/projects" render={() => <ProjectsMain />} />
-								<Route exact path="/activity" render={() => <div>Activity</div>} />
-								<Route exact path="/analytics" render={() => <div>Analytics</div>} />
-								<Route exact path="/settings" render={() => <div>Settings</div>} />
+								<Route
+									exact
+									path="/activity"
+									render={() => <div>Activity</div>}
+								/>
+								<Route
+									exact
+									path="/analytics"
+									render={() => <div>Analytics</div>}
+								/>
+								<Route
+									exact
+									path="/settings"
+									render={() => <div>Settings</div>}
+								/>
 								<Route exact path="/tasks/:taskId" component={SingleTaskPage} />
-								<Route exact path="/editTask/:taskId" component={EditTaskForm} />
-								<Route exact path="/editProject/:projectId" component={EditProjectForm} />
+								<Route
+									exact
+									path="/editTask/:taskId"
+									component={EditTaskForm}
+								/>
+								<Route
+									exact
+									path="/editProject/:projectId"
+									component={EditProjectForm}
+								/>
 								<Redirect to="/" />
 							</Switch>
 						</div>

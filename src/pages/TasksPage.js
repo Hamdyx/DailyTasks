@@ -23,27 +23,27 @@ export const TasksPage = () => {
 	return (
 		<Container fluid>
 			<Row>
-				<Col>
+				<Col sm={12} md={6}>
 					<AddTaskForm />
 				</Col>
 				<Col>
-					<Image src={tasksImg} alt="tasks art" width={450} height={300} />
+					<Image src={tasksImg} alt="tasks art" width="100%" height="100%" />
 				</Col>
 			</Row>
 			<Row className="tasks-details">
-				<Col className="total-tasks">
+				<Col sm="auto" md={3} className="total-tasks">
 					<h6>Total Tasks</h6>
 					<p>{tasksIds.length}</p>
 				</Col>
-				<Col className="tasks-productivity">
+				<Col sm="auto" md={3} className="tasks-productivity">
 					<h6>Productivity</h6>
 					<p>{avgProgress.toFixed(2)}%</p>
 				</Col>
-				<Col className="tasks-dueDate">
+				<Col sm="auto" md={3} className="tasks-dueDate">
 					<h6>Due date</h6>
 					<p>{today}</p>
 				</Col>
-				<Col className="tasks-attach">
+				<Col sm="auto" md={3} className="tasks-attach">
 					<h6>Attachments</h6>
 					<p>85</p>
 				</Col>
