@@ -87,8 +87,25 @@ exports.updateTask = (req, res) => {
 };
 
 exports.deleteTask = (req, res) => {
-	res.status(204).json({
-		status: 'success',
-		data: null,
-	});
+	const id = req.params.id;
+	const filteredTasks = tasks.filter((el) => el.id !== id);
+
+	fs.writeFile(
+		`${__dirname}/../dev-data/data/tasks-simple.json`,
+		JSON.stringify(filteredTasks, null, 4),
+		(err) => {
+			if (err) {
+				console.log(err);
+				res.status(400).json({
+					status: 'failed to delete task',
+					data: null,
+				});
+			} else {
+				res.status(204).json({
+					status: 'success',
+					data: null,
+				});
+			}
+		}
+	);
 };

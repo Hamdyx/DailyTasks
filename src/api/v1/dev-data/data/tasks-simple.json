@@ -11,17 +11,6 @@
         "category": "read"
     },
     {
-        "id": "2021-09-20T14:05:01.052Z",
-        "title": "study",
-        "details": "study redux",
-        "additionalNotes": "finished dispatch and selectors",
-        "isCompleted": false,
-        "progress": 50,
-        "startOn": "2021-10-05T15:00",
-        "dueOn": "2021-10-05T15:00",
-        "category": "work"
-    },
-    {
         "id": "2021-09-20T14:14:13.715Z",
         "title": "workout",
         "details": "do morning exercises",
@@ -40,7 +29,7 @@
         "dueOn": "2022-01-31T23:00",
         "additionalNotes": "",
         "isCompleted": false,
-        "progress": 15,
+        "progress": 0,
         "category": "work"
     },
     {
@@ -55,14 +44,14 @@
         "category": "work"
     },
     {
-        "id": "2021-12-26T23:17:29.130Z",
-        "title": "testCategory1",
-        "details": "testCategory1 details",
-        "startOn": "2021-12-27T00:00",
-        "dueOn": "2021-12-28T00:00",
-        "category": "personal",
+        "id": "2022-02-14T17:00:16.624Z",
+        "title": "study",
+        "details": "learn react",
+        "startOn": "2022-02-14T19:00",
+        "dueOn": "2022-02-28T19:00",
+        "category": "work",
         "additionalNotes": "",
-        "isCompleted": false,
-        "progress": 0
+        "isCompleted": true,
+        "progress": 100
     }
 ]

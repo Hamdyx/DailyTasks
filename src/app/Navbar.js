@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Nav, Button } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-// import { useRouter } from 'next/router';
 
 import { RiDashboardFill } from 'react-icons/ri';
 import { IoCalendarOutline } from 'react-icons/io5';
@@ -10,28 +9,14 @@ import {
 	AiOutlineProject,
 	AiOutlinePieChart,
 	AiOutlineSetting,
-	AiOutlinePlus,
 } from 'react-icons/ai';
 import { FiActivity } from 'react-icons/fi';
 
 import './Navbar.css';
 
 const NavItem = ({ title, icon, path }) => {
-	/* const [path, setPath] = useState(
-		window.location.href.split('http://localhost:3000')[1]
-	); */
-	/* let _path = window.location.href.split('http://localhost:3000')[1]; */
-
-	/* useEffect(() => {
-		_path = window.location.href.split('http://localhost:3000')[1];
-		setPath(_path);
-	}, [window.location.href]); */
-
-	// console.log('NavItem');
-	// console.log(path);
 	let _link = '/';
 	if (title !== 'dashboard') {
-		// console.log(`NavItem title: ${title}`);
 		_link = `/${title}`;
 	}
 	return (
@@ -64,34 +49,37 @@ export const Navbar = () => {
 		<AiOutlinePieChart className="nav-icon" />,
 		<AiOutlineSetting className="nav-icon" />,
 	];
-	/* let path = window.location.href.split('http://localhost:3000')[1]; */
+
 	let navItems = routes.map((el, i) => (
 		<NavItem key={i} title={el} icon={icons[i]} path={path} />
 	));
+
+	const formatTitle = (t) => {
+		return `${t.slice(0, 1)[0].toUpperCase()}${t.slice(1)}`;
+	};
 	useEffect(() => {
 		let navDom = document.querySelector('.nav-section');
-		/* navDom.firstChild.classList.add('active'); */
-		navDom.childNodes.forEach((el) => {
+
+		document.title =
+			path === '/'
+				? formatTitle('dailytasks')
+				: formatTitle(path.split('/')[1]);
+
+		[...navDom.querySelectorAll('a')].forEach((el) => {
 			el.addEventListener('click', (ev) => {
-				/* path = window.location.href.split('http://localhost:3000')[1]; */
-				/* let navList = Array.from(navDom.childNodes);
-				let prevActive = navList.filter((n) => n.classList[0] === 'active');
-				prevActive[0].classList.remove('active');
-				ev.currentTarget.classList.add('active'); */
-				// console.log('navDom click ev.target');
-				// console.log(ev.target.to);
-				// console.log(ev.target.href);
 				let _path = ev.target.href.split('http://localhost:3000')[1];
-				// console.log('_path');
-				// console.log(_path);
+
+				document.title =
+					_path === '/'
+						? formatTitle('dailytasks')
+						: formatTitle(_path.split('/')[1]);
+
 				setPath(_path);
 			});
 		});
-	}, []);
+	});
 
 	const updateNavItems = (path) => {
-		// console.log('updateNavItems');
-		// console.log(path);
 		navItems = routes.map((el, i) => (
 			<NavItem key={i} title={el} icon={icons[i]} path={path} />
 		));
@@ -105,7 +93,89 @@ export const Navbar = () => {
 		<aside className="side-navbar">
 			<Nav defaultActiveKey="/" className="flex-column nav-section">
 				{navItems}
+				<ColorModeToggle />
 			</Nav>
 		</aside>
+	);
+};
+
+const ColorModeToggle = () => {
+	function handleModeToggle() {
+		console.log('modeToggle clicked');
+		console.log(this);
+		console.log(this.checked);
+		let darkMode = {
+			mainBgColor: '#41435c',
+			baseColor: '#14213d',
+			subColor: '#005F73',
+			subColor1: '#0A9396',
+			mainTxtColor: '#fff',
+		};
+		let lightMode = {
+			mainBgColor: '#e1e4e6',
+			baseColor: '#264653',
+			subColor: '#7fccf0',
+			subColor1: '#2a9d8f',
+			mainTxtColor: '#264653',
+		};
+		if (!this.checked) {
+			document.documentElement.style.setProperty(
+				`--mainBgColor`,
+				lightMode.mainBgColor
+			);
+			document.documentElement.style.setProperty(
+				`--mainTxtColor`,
+				lightMode.mainTxtColor
+			);
+			document.documentElement.style.setProperty(
+				`--baseColor`,
+				lightMode.baseColor
+			);
+			document.documentElement.style.setProperty(
+				`--subColor`,
+				lightMode.subColor
+			);
+			document.documentElement.style.setProperty(
+				`--subColor1`,
+				lightMode.subColor1
+			);
+		} else {
+			document.documentElement.style.setProperty(
+				`--mainBgColor`,
+				darkMode.mainBgColor
+			);
+			document.documentElement.style.setProperty(
+				`--mainTxtColor`,
+				darkMode.mainTxtColor
+			);
+			document.documentElement.style.setProperty(
+				`--baseColor`,
+				darkMode.baseColor
+			);
+			document.documentElement.style.setProperty(
+				`--subColor`,
+				darkMode.subColor
+			);
+			document.documentElement.style.setProperty(
+				`--subColor1`,
+				darkMode.subColor1
+			);
+		}
+	}
+
+	useEffect(() => {
+		const toggle = document.querySelector('#toggle-checkbox');
+		console.log(toggle.checked);
+		toggle.addEventListener('click', handleModeToggle);
+	});
+
+	return (
+		<div className="mode-wrapper">
+			<label className="darkmode-toggle" htmlFor="toggle-checkbox">
+				<span className="visually-hidden">Enable dark mode</span>
+				<input type="checkbox" id="toggle-checkbox" />
+				<span className="toggle-slider" aria-hidden="true"></span>
+			</label>
+		</div>
 	);
 };

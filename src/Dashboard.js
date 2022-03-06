@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Form, Table } from 'react-bootstrap';
-import { IoNotificationsSharp, IoMailSharp, IoCaretForward } from 'react-icons/io5';
+import {
+	IoNotificationsSharp,
+	IoMailSharp,
+	IoCaretForward,
+} from 'react-icons/io5';
 
 import { useSelector } from 'react-redux';
-import { selectAllTasks, selectTasksIds } from './features/tasks/tasksSlice';
+import { selectTasksIds } from './features/tasks/tasksSlice';
 
 import { TaskCard } from './features/tasks/TaskCard';
 
@@ -21,11 +25,15 @@ export const Dashboard = () => {
 	if (taskStatus === 'loading') {
 		content = <div className="loader">Loading...</div>;
 	} else if (taskStatus === 'succeeded') {
-		content = tasksIdsArr.map((taskId) => <TaskCard key={taskId} taskId={taskId} />);
+		content = tasksIdsArr.map((taskId) => (
+			<TaskCard key={taskId} taskId={taskId} />
+		));
 	} else if (taskStatus === 'failed') {
 		content = <div>{error}</div>;
 	} else if (taskStatus === 'idle') {
-		content = allTasksIds.map((taskId) => <TaskCard key={taskId} taskId={taskId} />);
+		content = allTasksIds.map((taskId) => (
+			<TaskCard key={taskId} taskId={taskId} />
+		));
 	}
 
 	return (
@@ -35,7 +43,10 @@ export const Dashboard = () => {
 					<h5>Hello, Cryptojoint</h5>
 					<h5>You've got</h5>
 					<h5>8 tasks today</h5>
-					<Form.Control placeholder="Search something..." className="dashboard-search" />
+					<Form.Control
+						placeholder="Search something..."
+						className="dashboard-search"
+					/>
 					<Container className="dashboard-tasks-section">
 						<h5>My tasks</h5>
 						<Button className="tasks-timeframe">Recenlty</Button>
@@ -108,7 +119,6 @@ const ProjectTracker = () => {
 };
 
 const ScheduleCalendar = () => {
-	const allTasks = useSelector(selectAllTasks);
 	const getDays = () => {
 		let daysInWeek = [
 			'Sunday',
@@ -165,15 +175,6 @@ const ScheduleCalendar = () => {
 		return content;
 	};
 
-	const getTasks = () => {
-		let tasksContent = [];
-		for (let i = 0; i < 3 && i < allTasks.length; i++) {
-			let _task = allTasks[i];
-			tasksContent.push(<TaskCard key={_task.id} taskId={_task.id} />);
-		}
-		return tasksContent;
-	};
-
 	return (
 		<Container>
 			<Table>
@@ -183,9 +184,9 @@ const ScheduleCalendar = () => {
 				{getDates()}
 			</Table>
 
-			<Row>
+			{/* <Row>
 				<Col>{getTasks()}</Col>
-			</Row>
+			</Row> */}
 		</Container>
 	);
 };

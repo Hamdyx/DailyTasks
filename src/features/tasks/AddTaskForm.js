@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import CustomFloatingLabel from '../../components/inputs/CustomFloatingLabel';
 import { addNewTask } from './tasksSlice';
 
-import { Form, Container, Row, Col, Button, Modal, FloatingLabel } from 'react-bootstrap';
+import { Form, Row, Col, Button, Modal } from 'react-bootstrap';
 
 export const AddTaskForm = () => {
 	const [title, setTitle] = useState('');
 	const [details, setDetails] = useState('');
 	const [startOn, setStartOn] = useState('');
 	const [dueOn, setDueOn] = useState('');
-	const [category, setCategory] = useState('personal');
+	const [category, setCategory] = useState('work');
 	const [additionalNotes, setAdditionalNotes] = useState('');
-	const [addRequestStatus, setAddRequestStatus] = useState('');
 
 	const [show, setShow] = useState(false);
 
@@ -22,10 +21,11 @@ export const AddTaskForm = () => {
 	const dispatch = useDispatch();
 
 	const onTitleChanged = (e) => setTitle(e.target.value);
+	const onDetailsChanged = (e) => setDetails(e.target.value);
 	const onStartOnChanged = (e) => setStartOn(e.target.value);
 	const onDueOnChanged = (e) => setDueOn(e.target.value);
-
-	const canSave = [title].every(Boolean) && addRequestStatus === 'idle';
+	const onNotesChanged = (e) => setAdditionalNotes(e.target.value);
+	const onCategoryChanged = (e) => setCategory(e.target.value);
 
 	const onFormSubmit = () => {
 		if (title && details) {
@@ -33,7 +33,7 @@ export const AddTaskForm = () => {
 			console.log(`details: ${details}`);
 			console.log('calling dispatch');
 			const addToServer = async () => {
-				await dispatch(
+				dispatch(
 					addNewTask({
 						id: new Date().toISOString(),
 						title,
@@ -58,11 +58,23 @@ export const AddTaskForm = () => {
 		}
 	};
 
+	let testCat = ['work', 'personal', 'healthcare', 'read', 'games'];
+	let categoryContent = testCat.map((el, i) => (
+		<Button
+			key={i}
+			value={el}
+			className={`category-btn ${el === category ? 'active' : ''}`}
+			onClick={onCategoryChanged}
+		>
+			{el}
+		</Button>
+	));
+
 	return (
 		<section className="add-task-form">
 			<p>
-				here you can track all of your tasks which are upcoming, in progress or already
-				finished, also you can add new customised tasks
+				here you can track all of your tasks which are upcoming, in progress or
+				already finished, also you can add new customised tasks
 			</p>
 			<Button className="customBg-btn" onClick={handleModalShow}>
 				ADD TASK
@@ -76,65 +88,51 @@ export const AddTaskForm = () => {
 					<Form>
 						<Row>
 							<Col>
-								<FloatingLabel
-									controlId="floatingInput"
-									label="Task Name"
-									className="mb-3"
-								>
-									<Form.Control
-										placeholder="Task Name"
-										value={title}
-										onChange={onTitleChanged}
-									/>
-								</FloatingLabel>
+								<CustomFloatingLabel
+									type={'text'}
+									label={'Title'}
+									value={title}
+									changeFunc={onTitleChanged}
+								/>
+								<CustomFloatingLabel
+									type={'text'}
+									label={'Description'}
+									value={details}
+									changeFunc={onDetailsChanged}
+								/>
+							</Col>
+							<Col>
+								<p>Category</p>
+								{categoryContent}
+							</Col>
+						</Row>
+						<Row></Row>
+						<Row>
+							<Col md={6}>
+								<CustomFloatingLabel
+									type={'datetime-local'}
+									label={'Start-On'}
+									value={startOn}
+									changeFunc={onStartOnChanged}
+								/>
+							</Col>
+							<Col md={6}>
+								<CustomFloatingLabel
+									type={'datetime-local'}
+									label={'Due-On'}
+									value={dueOn}
+									changeFunc={onDueOnChanged}
+								/>
 							</Col>
 						</Row>
 						<Row>
 							<Col>
-								<FloatingLabel
-									controlId="floatingInput"
-									label="Description"
-									className="mb-3"
-								>
-									<Form.Control
-										placeholder="Add more detail to this task..."
-										value={details}
-										onChange={(e) => setDetails(e.target.value)}
-									/>
-								</FloatingLabel>
-							</Col>
-						</Row>
-						<Row>
-							<Col md={6}>
-								<FloatingLabel label="Start-On" className="mb-3">
-									<Form.Control
-										type="datetime-local"
-										placeholder="Start-On"
-										value={startOn}
-										onChange={onStartOnChanged}
-									/>
-								</FloatingLabel>
-							</Col>
-							<Col md={6}>
-								<FloatingLabel label="Due-On" className="mb-3">
-									<Form.Control
-										type="datetime-local"
-										placeholder="Start-On"
-										value={dueOn}
-										onChange={onDueOnChanged}
-									/>
-								</FloatingLabel>
-							</Col>
-						</Row>
-						<Row>
-							<Col>
-								<FloatingLabel controlId="floatingInput" label="Notes" className="mb-3">
-									<Form.Control
-										placeholder="Add extra notes or comments to this task..."
-										value={additionalNotes}
-										onChange={(e) => setAdditionalNotes(e.target.value)}
-									/>
-								</FloatingLabel>
+								<CustomFloatingLabel
+									type={'text'}
+									label={'Notes'}
+									value={additionalNotes}
+									changeFunc={onNotesChanged}
+								/>
 							</Col>
 						</Row>
 					</Form>

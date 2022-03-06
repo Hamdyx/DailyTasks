@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { fetchProjects, selectProjectIds } from './projectsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col, Button, Image } from 'react-bootstrap';
@@ -28,20 +28,20 @@ export const ProjectsMain = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			let res = await dispatch(fetchProjects());
+			let res = dispatch(fetchProjects());
 			return res;
 		};
 		fetchData();
-		/* const testDate = new Date().toUTCString().split(' ');
-		setToday(`${testDate[1]} ${testDate[2]} ${testDate[3]}`); */
-	}, []);
+	}, [dispatch]);
 
 	const projectsIds = useSelector(selectProjectIds);
 
 	let content;
 
 	if (projectsIds) {
-		content = projectsIds.map((id, i) => <ProjectCard key={i} projectId={id} />);
+		content = projectsIds.map((id, i) => (
+			<ProjectCard key={i} projectId={id} />
+		));
 	}
 
 	return (
